@@ -1,11 +1,48 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowDown, Github, Linkedin, Mail, Download, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
+const roles = [
+  "AI/ML Engineer",
+  "AI Agent Developer",
+  "Data Analyst",
+  "Full-Stack Developer",
+];
+
 export function Hero() {
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [typedRole, setTypedRole] = useState(roles[0]);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentRole = roles[roleIndex];
+
+    if (!isDeleting && typedRole === currentRole) {
+      const holdTimer = setTimeout(() => setIsDeleting(true), 1400);
+      return () => clearTimeout(holdTimer);
+    }
+
+    if (isDeleting && typedRole.length === 0) {
+      setIsDeleting(false);
+      setRoleIndex((prev) => (prev + 1) % roles.length);
+      return;
+    }
+
+    const typingTimer = setTimeout(() => {
+      const nextText = isDeleting
+        ? currentRole.slice(0, typedRole.length - 1)
+        : currentRole.slice(0, typedRole.length + 1);
+
+      setTypedRole(nextText);
+    }, isDeleting ? 45 : 80);
+
+    return () => clearTimeout(typingTimer);
+  }, [typedRole, isDeleting, roleIndex]);
+
   const handleScroll = (href: string) => {
     const el = document.querySelector(href);
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -79,7 +116,15 @@ export function Hero() {
               className="text-xl sm:text-2xl font-medium mb-6"
               style={{ color: "var(--text-secondary)" }}
             >
-              Backend Developer <span style={{ color: "var(--text-muted)" }}>|</span> <span style={{ color: "var(--accent)" }}>AI & Web Enthusiast</span>
+              <span style={{ color: "var(--accent)" }}>{typedRole}</span>
+              <motion.span
+                aria-hidden="true"
+                animate={{ opacity: [1, 0, 1] }}
+                transition={{ duration: 0.9, repeat: Infinity }}
+                style={{ color: "var(--text-muted)" }}
+              >
+                |
+              </motion.span>
             </motion.p>
 
             {/* Description */}
@@ -115,7 +160,7 @@ export function Hero() {
                 rel="noopener noreferrer"
               >
                 <Download size={16} />
-                View CV
+                Download CV
               </Button>
             </motion.div>
 
@@ -195,7 +240,7 @@ export function Hero() {
                   Puvanakopis Mehanathan
                 </p>
                 <p className="text-sm" style={{ color: "var(--text-primary)" }}>
-                  Backend Developer & AI Enthusiast
+                  {roles[roleIndex]}
                 </p>
               </div>
             </div>

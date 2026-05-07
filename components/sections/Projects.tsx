@@ -15,22 +15,21 @@ const projects = [
     description:
       "An AI-powered e-commerce assistant built with LangGraph and SQLite for smart product browsing, order management, and multi-turn customer support conversations.",
     tags: ["Python", "LangGraph", "LangChain", "ChatGroq", "SQLite", "Pydantic"],
-    github: "https://github.com/puvanakopis",
+    github: "https://github.com/puvanakopis/ecommerce-ai-agent",
     demo: "https://example.com",
     accent: "#2563eb",
     featured: true,
   },
   {
     icon: Building2,
-    image: "https://picsum.photos/600/400?random=2",
+    image: "/project/CampusEase.jpg",
     title: "CampusEase",
     subtitle: "University Accommodation & Vehicle Rental Platform",
     period: "Apr 2025 – Jul 2025",
     description:
       "A full-stack university platform for accommodation and vehicle rental with role-based access and a RAG-powered chatbot using ChromaDB.",
     tags: ["React", "FastAPI", "MongoDB", "ChromaDB", "Groq API", "RAG"],
-    github: "https://github.com/puvanakopis",
-    demo: "https://example.com",
+    github: "https://github.com/puvanakopis/CampusEase",
     accent: "#2563eb",
     featured: true,
   },
@@ -43,7 +42,7 @@ const projects = [
     description:
       "A mobile-first attendance system using QR scanning, face recognition, and geolocation validation to prevent proxy attendance in real time.",
     tags: ["Flutter", "Python", "OpenCV", "Node.js", "MongoDB", "REST APIs"],
-    github: "https://github.com/puvanakopis",
+    github: "https://github.com/SE6101-Community-Project/Student_Attendance_System",
     demo: null,
     accent: "#3b82f6",
     featured: false,
@@ -57,7 +56,7 @@ const projects = [
     description:
       "A data science research project analyzing how social media usage impacts mental and physical health through EDA and statistical modeling.",
     tags: ["Python", "Pandas", "NumPy", "Matplotlib", "Seaborn", "EDA"],
-    github: "https://github.com/puvanakopis",
+    github: "https://github.com/puvanakopis/social-media-health-analysis",
     demo: null,
     accent: "#1d4ed8",
     featured: false,
