@@ -18,7 +18,7 @@ const experiences: TimelineItem[] = [
     {
         title: "AI Developer",
         organization: "ZENCORD",
-        location: "Remote",
+        location: "Freelance",
         period: "Aug 2025 – Apr 2026",
         summary:
             "Designed and deployed AI solutions using LLMs, RAG pipelines, and agent-based architectures. Built scalable FastAPI backends with vector databases (ChromaDB, Pinecone) and delivered end-to-end AI applications like chatbots and data tools.",
