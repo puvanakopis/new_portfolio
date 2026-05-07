@@ -13,7 +13,7 @@ const certifications = [
       "Mastered building advanced RAG systems, intelligent AI agents using LangChain, and deploying scalable LLM applications in production environments.",
     tags: ["RAG", "LangChain", "Agentic AI", "LLMs"],
     color: "#2563eb",
-    href: "https://coursera.org",
+    href: "https://coursera.org/verify/professional-cert/DKF9EMROYALH",
   },
   {
     title: "IBM AI Developer Professional Certificate",
@@ -22,7 +22,7 @@ const certifications = [
       "Developed expertise in full-stack AI development including Generative AI, model fine-tuning, Watson AI services, and API deployment.",
     tags: ["Generative AI", "Fine-Tuning", "Watson", "API Deployment"],
     color: "#2563eb",
-    href: "https://coursera.org",
+    href: "https://coursera.org/verify/professional-cert/ZUVQR7F6DO3O",
   },
   {
     title: "Google Advanced Data Analytics Professional Certificate",
@@ -31,7 +31,7 @@ const certifications = [
       "Advanced training in predictive modeling, experimental design, regression analysis, and complex data visualization using Python and SQL.",
     tags: ["Python", "SQL", "Predictive Modeling", "Data Visualization"],
     color: "#3b82f6",
-    href: "https://coursera.org",
+    href: "https://coursera.org/verify/professional-cert/F1IQRCDAIOR7",
   },
   {
     title: "Crash Course on Python",
@@ -40,7 +40,7 @@ const certifications = [
       "Foundation in automated task scripting, object-oriented programming, and fundamental Python data structures and algorithms.",
     tags: ["Python", "OOP", "Scripting", "Data Structures"],
     color: "#1d4ed8",
-    href: "https://coursera.org",
+    href: "https://www.coursera.org/account/accomplishments/verify/EGD695AKI7LE",
   },
 ];
 

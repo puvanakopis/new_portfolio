@@ -71,10 +71,12 @@ export function Navbar() {
             onClick={() =>
               window.scrollTo({ top: 0, behavior: "smooth" })
             }
-            className="font-display font-bold text-xl tracking-tight"
+            className="inline-flex items-center gap-3"
             style={{ color: "var(--text-primary)" }}
           >
-            PM<span style={{ color: "var(--accent)" }}>.</span>
+            <span className="font-display font-bold text-2xl tracking-tight">
+              Puvanakopis
+            </span>
           </button>
 
           {/* Desktop nav */}
@@ -144,8 +146,8 @@ export function Navbar() {
                   transition={{ delay: i * 0.05 }}
                   onClick={() => handleNavClick(link.href)}
                   className={`text-left px-4 py-3 rounded-xl font-display font-medium text-sm transition-all duration-300 hover:bg-accent-subtle hover:text-accent ${active === link.href
-                      ? "text-accent bg-accent-subtle"
-                      : ""
+                    ? "text-accent bg-accent-subtle"
+                    : ""
                     }`}
                   style={{
                     color:
