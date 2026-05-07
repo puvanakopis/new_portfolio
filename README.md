@@ -85,8 +85,3 @@ portfolio/
 **GitHub:** [@puvanakopis](https://github.com/puvanakopis)  
 **LinkedIn:** [Puvanakopis](https://www.linkedin.com/in/puvanakopis/)  
 **Email:** puvanakopis@gamil.com
-- Open source community
-
-<br>
-
-**Building Intelligent Systems That Matter 🚀**
