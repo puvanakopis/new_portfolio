@@ -41,7 +41,7 @@ export function Hero() {
 
       <div className="section-container relative z-10 pt-32 pb-20">
         <div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] items-center">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl text-center lg:text-left">
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -98,7 +98,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.45 }}
-              className="flex flex-wrap items-center gap-4 mb-14"
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-14"
             >
               <Button
                 href="mailto:puvanakopis@gmail.com"
@@ -108,13 +108,14 @@ export function Hero() {
                 Contact Me
               </Button>
               <Button
-                href="/Puvanakopis_AI_ML.pdf"
+                href="https://drive.google.com/file/d/1pAiO-_XCA6V3c1T7Voce_KRzIXLQrlvr/view?usp=drive_link"
                 variant="outline"
                 size="lg"
-                download
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Download size={16} />
-                Download CV
+                View CV
               </Button>
             </motion.div>
 
@@ -125,7 +126,7 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.55 }}
               className="flex flex-col gap-6"
             >
-              <div className="flex items-center gap-4">
+              <div className="flex items-center justify-center lg:justify-start gap-4">
                 {[
                   { icon: Github, href: "https://github.com/puvanakopis", label: "GitHub" },
                   { icon: Linkedin, href: "https://linkedin.com/in/puvanakopis", label: "LinkedIn" },
