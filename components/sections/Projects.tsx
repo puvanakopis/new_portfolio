@@ -26,7 +26,7 @@ const projects = [
     featured: true,
   },
   {
-    image: "/project/cinebook.png",
+    image: "/project/CineBook.png",
     title: "CineBook",
     subtitle: "Movie Booking Platform with AI Multi-Agent System",
     description:
@@ -68,7 +68,7 @@ const projects = [
     featured: true,
   },
   {
-    image: "/project/footstyle.png",
+    image: "/project/FootStyle.png",
     title: "FootStyle E-Commerce Platform",
     subtitle: "Full-Stack Premium Footwear Store",
     description:
