@@ -29,7 +29,7 @@ const experiences: TimelineItem[] = [
         location: "Freelance",
         period: "Feb 2024 – Dec 2024 · 11 mos",
         summary:
-            "Developed responsive web applications using React.js and Next.js. Worked on full-stack features including REST APIs, UI optimization, authentication flows, and performance improvements. Delivered client projects across multiple domains with modern web technologies.",
+            "Developed responsive full-stack web applications using React.js and Next.js with backend development in Node.js and Express.js. Built REST APIs, authentication systems, and scalable features while optimizing UI performance and delivering modern client solutions across multiple domains.",
     },
 ];
 
@@ -44,7 +44,7 @@ const education: TimelineItem[] = [
     {
         title: "G.C.E. Advanced Level (Physical Science Stream)",
         organization: "BT/PD/Kaluthavalai Maha Vidyalayam (National School)",
-        period: "Jan 2014 – Feb 2021",
+        period: "Jan 2019 – Feb 2021",
         summary:
             "Completed G.C.E. A/L in the Physical Science stream with Combined Mathematics, Physics, and Chemistry, building a strong foundation in analytical thinking and problem-solving.",
     },

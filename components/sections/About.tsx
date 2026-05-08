@@ -10,7 +10,7 @@ const highlights = [
     icon: Brain,
     title: "AI/ML Expertise",
     description:
-      "Proficient in building LLM-powered systems, RAG pipelines, and AI agents using LangChain and LangGraph.",
+      "Experienced in building LLM-powered applications, RAG pipelines, AI agents, and semantic search systems using LangChain and LangGraph.",
   },
   {
     icon: Code2,
@@ -52,7 +52,7 @@ export function About() {
             </p>
 
             <p className="leading-relaxed">
-              I&apos;ve developed RAG-based chatbots, AI agents, face recognition systems,
+              I&apos;ve developed RAG-based chatbots, AI agents,
               and full-stack applications using tools like React, Next.js, FastAPI, and vector databases.
               As a freelance AI developer, I deliver end-to-end solutions—from idea to deployment—
               with a focus on reliability and impact.

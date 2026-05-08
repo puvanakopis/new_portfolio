@@ -135,8 +135,7 @@ export function Hero() {
               className="text-base sm:text-lg leading-relaxed max-w-xl mb-10"
               style={{ color: "var(--text-muted)" }}
             >
-              I specialize in architecting robust server-side applications and integrating artificial intelligence into modern web solutions. Turning complex logic into seamless experiences.
-            </motion.p>
+              I build AI-powered web applications using LLMs, RAG pipelines, and AI agents with modern full-stack technologies to create intelligent, scalable, and user-focused solutions.            </motion.p>
 
             {/* CTAs */}
             <motion.div
@@ -164,41 +163,46 @@ export function Hero() {
               </Button>
             </motion.div>
 
-            {/* Social links & Testimonial */}
+            {/* Social links */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.55 }}
-              className="flex flex-col gap-6"
+              className="flex items-center gap-4"
             >
-              <div className="flex items-center justify-center lg:justify-start gap-4">
-                {[
-                  { icon: Github, href: "https://github.com/puvanakopis", label: "GitHub" },
-                  { icon: Linkedin, href: "https://linkedin.com/in/puvanakopis", label: "LinkedIn" },
-                  { icon: Mail, href: "mailto:puvanakopis@gmail.com", label: "Email" },
-                ].map(({ icon: Icon, href, label }) => (
-                  <motion.a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={label}
-                    className="w-10 h-10 flex items-center justify-center rounded-full border transition-all duration-200 hover:border-accent hover:text-accent"
-                    style={{
-                      borderColor: "var(--border)",
-                      color: "var(--text-muted)",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.borderColor = "var(--accent)";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.borderColor = "var(--border)";
-                    }}
-                  >
-                    <Icon size={16} />
-                  </motion.a>
-                ))}
-              </div>
+              {[
+                { icon: Github, href: "https://github.com/puvanakopis", label: "GitHub" },
+                { icon: Linkedin, href: "https://linkedin.com/in/puvanakopis", label: "LinkedIn" },
+                { icon: Mail, href: "mailto:puvanakopis@gmail.com", label: "Email" },
+              ].map(({ icon: Icon, href, label }) => (
+                <motion.a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="w-10 h-10 flex items-center justify-center rounded-full border transition-all duration-200 hover:border-accent hover:text-accent"
+                  style={{
+                    borderColor: "var(--border)",
+                    color: "var(--text-muted)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "var(--accent)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "var(--border)";
+                  }}
+                >
+                  <Icon size={16} />
+                </motion.a>
+              ))}
+              <div
+                className="h-px flex-1 max-w-[120px]"
+                style={{ backgroundColor: "var(--border)" }}
+              />
+              <span className="font-mono text-xs" style={{ color: "var(--text-muted)" }}>
+                Batticaloa, Sri Lanka
+              </span>
             </motion.div>
           </div>
 
