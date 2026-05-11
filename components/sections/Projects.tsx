@@ -132,7 +132,7 @@ export function Projects() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: index * 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="group relative w-[520px] h-[480px] rounded-2xl border border-[var(--card-border)] flex flex-col transition-all duration-300 hover:-translate-y-1 hover:border-accent overflow-hidden"
+        className="group relative w-full h-[450px] rounded-2xl border border-[var(--card-border)] flex flex-col transition-all duration-300 hover:-translate-y-1 hover:border-accent overflow-hidden"
         style={{
           backgroundColor: "var(--card-bg)",
         }}
@@ -142,19 +142,19 @@ export function Projects() {
           <img
             src={project.image}
             alt={`${project.title} preview`}
-            className="w-full h-[240px] object-cover object-top"
+            className="w-full h-[200px] object-cover object-top"
           />
         </div>
 
         {/* CONTENT SECTION */}
-        <div className="p-6 flex flex-col flex-1">
-          <div className="flex flex-row items-start justify-between mb-4">
+        <div className="p-4 flex flex-col flex-1">
+          <div className="flex flex-row items-start justify-between">
             <div>
               <h3 className="font-bold text-base" style={{ color: "var(--text-primary)" }}>
                 {project.title}
               </h3>
 
-              <p className="text-xs font-mono mb-2" style={{ color: project.accent }}>
+              <p className="text-xs font-mono mb-1" style={{ color: project.accent }}>
                 {project.subtitle}
               </p>
             </div>
@@ -179,14 +179,14 @@ export function Projects() {
 
           </div>
           <p
-            className={`text-sm leading-relaxed mb-3 ${large ? "" : "line-clamp-2"}`}
+            className={`text-sm leading-relaxed mb-2 ${large ? "" : "line-clamp-2"}`}
             style={{ color: "var(--text-secondary)" }}
           >
             {project.description}
           </p>
 
 
-          <div className="mt-auto flex flex-wrap gap-1.5">
+          <div className="mt-auto flex flex-wrap gap-1">
             {project.tags.map((tag) => (
               <span
                 key={tag}
@@ -215,11 +215,10 @@ export function Projects() {
         subtitle="Real-world AI and full-stack applications built end-to-end."
       />
 
-      <div className="flex flex-wrap justify-center gap-12">
-        {projects
-          .map((project, i) => (
-            <ProjectCard key={project.title} project={project} index={i} large={false} />
-          ))}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+        {projects.map((project, i) => (
+          <ProjectCard key={project.title} project={project} index={i} large={false} />
+        ))}
       </div>
     </SectionWrapper>
   );
