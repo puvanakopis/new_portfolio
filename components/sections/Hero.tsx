@@ -145,14 +145,14 @@ export function Hero() {
               className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-14"
             >
               <Button
-                href="mailto:puvanakopis@gmail.com"
+                onClick={() => handleScroll("#contact")}
                 size="lg"
               >
                 <Mail size={16} />
                 Contact Me
               </Button>
               <Button
-                href="https://drive.google.com/file/d/1pAiO-_XCA6V3c1T7Voce_KRzIXLQrlvr/view?usp=drive_link"
+                href="/cv/Puvanakopis_CV.pdf"
                 variant="outline"
                 size="lg"
                 target="_blank"
