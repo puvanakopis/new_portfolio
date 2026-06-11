@@ -1,272 +1,332 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Mail, Download, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { useHandleNav } from "@/hooks/useHandleNav";
 
-const roles = [
-  "AI/ML Engineer",
-  "AI Agent Developer",
-  "Data Analyst",
-  "Full-Stack Developer",
-];
+gsap.registerPlugin(ScrollTrigger);
 
 export function Hero() {
-  const [roleIndex, setRoleIndex] = useState(0);
-  const [typedRole, setTypedRole] = useState(roles[0]);
-  const [isDeleting, setIsDeleting] = useState(false);
+  const root = useRef<HTMLElement>(null);
+  const blobs = useRef<HTMLDivElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
+
+  const { handleNav } = useHandleNav({
+    overlayRef,
+  });
 
   useEffect(() => {
-    const currentRole = roles[roleIndex];
+    let played = false;
 
-    if (!isDeleting && typedRole === currentRole) {
-      const holdTimer = setTimeout(() => setIsDeleting(true), 1400);
-      return () => clearTimeout(holdTimer);
+    const playIntro = () => {
+      if (played) return;
+      played = true;
+      introTl?.play(0);
+    };
+
+    let introTl: gsap.core.Timeline | undefined;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        paused: true,
+        defaults: { ease: "power4.out" },
+      });
+
+      introTl = tl;
+
+      tl.from(".hero-eyebrow", {
+        opacity: 0,
+        y: 16,
+        duration: 0.8,
+      })
+        .from(
+          ".hero-word > span",
+          {
+            yPercent: 110,
+            duration: 1.1,
+            stagger: 0.12,
+          },
+          "-=0.4"
+        )
+        .from(
+          ".hero-fade",
+          {
+            opacity: 0,
+            y: 24,
+            duration: 1,
+            ease: "power3.out",
+            stagger: 0.12,
+          },
+          "-=0.5"
+        );
+
+      tl.fromTo(
+        ".hero-image",
+        {
+          clipPath: "inset(100% 0% 0% 0%)",
+        },
+        {
+          clipPath: "inset(0% 0% 0% 0%)",
+          duration: 1.3,
+        },
+        "-=1.1"
+      ).fromTo(
+        ".hero-image-inner",
+        {
+          scale: 1.3,
+        },
+        {
+          scale: 1,
+          duration: 1.3,
+        },
+        "<"
+      );
+
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 768px)", () => {
+        gsap.to(".hero-text-col", {
+          yPercent: -18,
+          ease: "none",
+          scrollTrigger: {
+            trigger: root.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: 1,
+          },
+        });
+
+        gsap.to(".hero-image", {
+          yPercent: 22,
+          ease: "none",
+          scrollTrigger: {
+            trigger: root.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: 1,
+          },
+        });
+
+        gsap.to(".hero-blobs", {
+          yPercent: 30,
+          ease: "none",
+          scrollTrigger: {
+            trigger: root.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: 1,
+          },
+        });
+      });
+    }, root);
+
+    window.addEventListener("preloader:done", playIntro);
+
+    const fallback = window.setTimeout(playIntro, 2800);
+
+    let onMove: ((e: MouseEvent) => void) | undefined;
+
+    if (window.matchMedia("(pointer: fine)").matches) {
+      onMove = (e: MouseEvent) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 60;
+        const y = (e.clientY / window.innerHeight - 0.5) * 60;
+
+        gsap.to(blobs.current, {
+          x,
+          y,
+          duration: 1.2,
+          ease: "power2.out",
+        });
+      };
+
+      window.addEventListener("mousemove", onMove);
     }
 
-    if (isDeleting && typedRole.length === 0) {
-      setIsDeleting(false);
-      setRoleIndex((prev) => (prev + 1) % roles.length);
-      return;
-    }
+    return () => {
+      window.removeEventListener("preloader:done", playIntro);
+      window.clearTimeout(fallback);
 
-    const typingTimer = setTimeout(() => {
-      const nextText = isDeleting
-        ? currentRole.slice(0, typedRole.length - 1)
-        : currentRole.slice(0, typedRole.length + 1);
+      if (onMove) {
+        window.removeEventListener("mousemove", onMove);
+      }
 
-      setTypedRole(nextText);
-    }, isDeleting ? 45 : 80);
-
-    return () => clearTimeout(typingTimer);
-  }, [typedRole, isDeleting, roleIndex]);
-
-  const handleScroll = (href: string) => {
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
+      ctx.revert();
+    };
+  }, []);
 
   return (
-    <section
-      id="hero"
-      className="min-h-screen flex flex-col justify-center relative overflow-hidden"
-    >
-      {/* Background orbs */}
-      <div className="absolute inset-0 pointer-events-none">
+    <>
+      {/* Page Transition Overlay */}
+      <div
+        ref={overlayRef}
+        className="pointer-events-none fixed inset-0 z-[60] hidden origin-bottom scale-y-0 bg-[var(--primary)]"
+      />
+
+      <section
+        ref={root}
+        id="top"
+        className="relative flex min-h-screen flex-col justify-center overflow-hidden px-6 pb-20 pt-28"
+      >
+        {/* Animated Gradient Blobs */}
         <div
-          className="absolute top-1/4 -right-32 w-96 h-96 rounded-full blur-3xl opacity-20"
-          style={{ background: "radial-gradient(circle, var(--accent) 0%, transparent 70%)" }}
-        />
-        <div
-          className="absolute bottom-1/4 -left-32 w-80 h-80 rounded-full blur-3xl opacity-10"
-          style={{ background: "radial-gradient(circle, #2563eb 0%, transparent 70%)" }}
-        />
-        {/* Decorative grid */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `
-              linear-gradient(var(--text-primary) 1px, transparent 1px),
-              linear-gradient(90deg, var(--text-primary) 1px, transparent 1px)
-            `,
-            backgroundSize: "60px 60px",
-          }}
-        />
-      </div>
+          ref={blobs}
+          className="hero-blobs pointer-events-none absolute inset-0 -z-10"
+        >
+          <div
+            className="animate-blob absolute left-[10%] top-[20%] h-[420px] w-[420px] rounded-full blur-[120px]"
+            style={{
+              backgroundColor: "var(--primary)",
+              opacity: 0.2,
+            }}
+          />
 
-      <div className="section-container relative z-10 pt-32 pb-20">
-        <div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] items-center">
-          <div className="max-w-3xl text-center lg:text-left">
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border text-xs tracking-wider mb-8"
-              style={{
-                borderColor: "var(--accent)",
-                color: "var(--accent)",
-                backgroundColor: "var(--accent-subtle)",
-              }}
-            >
-              <Sparkles size={12} />
-              Available for Internship &amp; Freelance
-            </motion.div>
+          <div
+            className="animate-blob absolute right-[8%] top-[40%] h-[360px] w-[360px] rounded-full blur-[140px] [animation-delay:-6s]"
+            style={{
+              backgroundColor: "var(--primary)",
+              opacity: 0.1,
+            }}
+          />
 
-            {/* Name */}
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight mb-6"
-              style={{ color: "var(--text-primary)" }}
-            >
-              Hi, I'm
-              <br />
-              <span style={{ color: "var(--accent)" }}>Puvankopis</span>
-            </motion.h1>
+          <div
+            className="animate-blob absolute bottom-[10%] left-[40%] h-[300px] w-[300px] rounded-full blur-[120px] [animation-delay:-12s]"
+            style={{
+              backgroundColor: "var(--foreground)",
+              opacity: 0.05,
+            }}
+          />
+        </div>
 
-            {/* Title */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.25 }}
-              className="text-xl sm:text-2xl font-medium mb-6"
-              style={{ color: "var(--text-secondary)" }}
+        {/* Dot Grid */}
+        <div className="dot-grid pointer-events-none absolute inset-0 -z-10 opacity-[0.35] [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
+
+        <div className="mx-auto grid w-full max-w-7xl items-center gap-10 lg:grid-cols-[1.35fr_0.9fr] lg:gap-14">
+          {/* Text Column */}
+          <div className="hero-text-col min-w-0">
+            <p className="hero-eyebrow mb-8 flex items-center gap-3 text-sm uppercase tracking-[0.3em] text-[var(--muted-foreground)]">
+              <span className="h-px w-10 bg-[var(--primary)]" />
+              Available for AI Internships
+            </p>
+
+            <h1
+              className="text-display flex flex-col text-[var(--foreground)]"
+              style={{ fontSize: "clamp(2.25rem, 5.2vw, 5rem)" }}
             >
-              <span style={{ color: "var(--accent)" }}>{typedRole}</span>
-              <motion.span
-                aria-hidden="true"
-                animate={{ opacity: [1, 0, 1] }}
-                transition={{ duration: 0.9, repeat: Infinity }}
-                style={{ color: "var(--text-muted)" }}
+              <span className="reveal-mask hero-word">
+                <span className="inline-block">Hi, I'm</span>
+              </span>
+
+              <span className="reveal-mask hero-word mt-2">
+                <span className="inline-block uppercase text-[var(--primary)]">
+                  Puvanakopis
+                </span>
+              </span>
+            </h1>
+
+            <p className="hero-fade mt-10 max-w-2xl text-lg leading-relaxed text-[var(--muted-foreground)]">
+              Software Engineering undergraduate specializing in AI
+              Engineering, Agentic AI Systems, Large Language Models (LLMs),
+              Retrieval-Augmented Generation (RAG), and Full-Stack AI
+              Applications.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="hero-fade mt-10 flex flex-wrap items-center gap-4">
+              <button
+                onClick={handleNav("#project")}
+                className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-[var(--primary)] px-8 py-4 text-sm font-medium uppercase tracking-wider text-[var(--primary-foreground)] transition-transform duration-300 hover:-translate-y-0.5"
               >
-                |
-              </motion.span>
-            </motion.p>
+                <span className="absolute inset-0 -z-0 origin-left scale-x-0 bg-[var(--foreground)] transition-transform duration-500 ease-out group-hover:scale-x-100" />
 
-            {/* Description */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.35 }}
-              className="text-base sm:text-lg leading-relaxed max-w-xl mb-10"
-              style={{ color: "var(--text-muted)" }}
-            >
-              I build AI-powered web applications using LLMs, RAG pipelines, and AI agents with modern full-stack technologies to create intelligent, scalable, and user-focused solutions.            </motion.p>
+                <span className="relative z-10 transition-colors duration-300 group-hover:text-[var(--background)]">
+                  View Projects
+                </span>
 
-            {/* CTAs */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.45 }}
-              className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-14"
-            >
-              <Button
-                onClick={() => handleScroll("#contact")}
-                size="lg"
+                <span className="relative z-10 transition-transform duration-300 group-hover:translate-y-0.5 group-hover:text-[var(--background)]">
+                  ↓
+                </span>
+              </button>
+
+              <button
+                onClick={handleNav("#contact")}
+                className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full border border-[var(--border)] px-8 py-4 text-sm font-medium uppercase tracking-wider transition-colors hover:border-[var(--primary)]"
               >
-                <Mail size={16} />
-                Contact Me
-              </Button>
-              <Button
-                href="/cv/Puvanakopis_CV.pdf"
-                variant="outline"
-                size="lg"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Download size={16} />
-                Download CV
-              </Button>
-            </motion.div>
+                <span className="relative z-10 transition-colors duration-300 group-hover:text-[var(--primary)]">
+                  Let's Talk
+                </span>
 
-            {/* Social links */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.55 }}
-              className="flex items-center gap-4"
-            >
-              {[
-                { icon: Github, href: "https://github.com/puvanakopis", label: "GitHub" },
-                { icon: Linkedin, href: "https://linkedin.com/in/puvanakopis", label: "LinkedIn" },
-                { icon: Mail, href: "mailto:puvanakopis@gmail.com", label: "Email" },
-              ].map(({ icon: Icon, href, label }) => (
-                <motion.a
-                  key={label}
-                  href={href}
+                <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:text-[var(--primary)]">
+                  →
+                </span>
+              </button>
+            </div>
+
+            {/* Social Links */}
+            <div className="hero-fade mt-14">
+              <div className="flex flex-wrap items-center gap-5 pt-8">
+                <a
+                  href="https://github.com/puvanakopis"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={label}
-                  className="w-10 h-10 flex items-center justify-center rounded-full border transition-all duration-200 hover:border-accent hover:text-accent"
-                  style={{
-                    borderColor: "var(--border)",
-                    color: "var(--text-muted)",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = "var(--accent)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = "var(--border)";
-                  }}
+                  className="flex h-14 w-14 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--background)]/50 transition-all duration-300 hover:border-[var(--primary)] hover:text-[var(--primary)]"
                 >
-                  <Icon size={16} />
-                </motion.a>
-              ))}
-              <div
-                className="h-px flex-1 max-w-[120px]"
-                style={{ backgroundColor: "var(--border)" }}
-              />
-              <span className="font-mono text-xs" style={{ color: "var(--text-muted)" }}>
-                Batticaloa, Sri Lanka
-              </span>
-            </motion.div>
-          </div>
+                  <FaGithub size={22} />
+                </a>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.94, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="relative mx-auto w-full max-w-sm lg:max-w-md"
-          >
-            <div
-              className="absolute -inset-6 rounded-[2rem] blur-3xl opacity-30"
-              style={{ background: "radial-gradient(circle, rgba(37,99,235,0.45) 0%, transparent 70%)" }}
-            />
-            <div
-              className="relative overflow-hidden rounded-[2rem] border p-3 shadow-2xl"
-              style={{
-                borderColor: "var(--border)",
-                background:
-                  "linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%)",
-              }}
-            >
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-[rgba(15,23,42,0.85)]">
-                <Image
-                  src="/hero.jpg"
-                  alt="Portrait of Puvanakopis Mehanathan"
-                  fill
-                  priority
-                  className="object-cover object-center transition-transform duration-500 hover:scale-110"
-                />
-              </div>
-              <div
-                className="absolute left-6 right-6 bottom-6 rounded-2xl border px-4 py-3 backdrop-blur-md"
-                style={{
-                  borderColor: "rgba(255,255,255,0.12)",
-                  backgroundColor: "rgba(2,6,23,0.55)",
-                }}
-              >
-                <p className="font-mono text-[10px] uppercase tracking-[0.3em] mb-1" style={{ color: "var(--text-muted)" }}>
-                  Puvanakopis Mehanathan
-                </p>
-                <p className="text-sm" style={{ color: "var(--text-primary)" }}>
-                  {roles[roleIndex]}
+                <a
+                  href="https://www.linkedin.com/in/puvanakopis/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-14 w-14 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--background)]/50 transition-all duration-300 hover:border-[var(--primary)] hover:text-[var(--primary)]"
+                >
+                  <FaLinkedinIn size={22} />
+                </a>
+
+                <a
+                  href="mailto:puvanakopis@gmail.com"
+                  className="flex h-14 w-14 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--background)]/50 transition-all duration-300 hover:border-[var(--primary)] hover:text-[var(--primary)]"
+                >
+                  <MdEmail size={22} />
+                </a>
+
+                <div className="mx-2 hidden h-px w-20 bg-[var(--border)] md:block" />
+
+                <p className="text-sm tracking-[0.15em] text-[var(--muted-foreground)]">
+                  Batticaloa, Sri Lanka
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
+
+          {/* Portrait */}
+          <div className="hero-image relative mx-auto hidden w-full max-w-sm lg:block lg:max-w-none">
+            <div className="overflow-hidden rounded-2xl border border-[var(--border)]">
+              <Image
+                src="/portrait.png"
+                alt="Portrait of Puvanakopis"
+                width={800}
+                height={1000}
+                className="hero-image-inner aspect-[4/5] w-full object-cover"
+                priority
+              />
+            </div>
+
+            <div className="hero-fade absolute bottom-5 right-5 rounded-2xl border border-[var(--border)] bg-[var(--background)]/80 px-6 py-4 backdrop-blur-xl shadow-lg">
+              <div className="text-display text-2xl text-[var(--primary)]">
+                Open
+              </div>
+
+              <p className="text-xs uppercase tracking-wider text-[var(--muted-foreground)]">
+                for projects & internships
+              </p>
+            </div>
+          </div>
         </div>
-
-      </div>
-
-      {/* Scroll indicator */}
-      <motion.button
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        onClick={() => handleScroll("#about")}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 hover:text-accent transition-colors"
-        style={{ color: "var(--text-muted)" }}
-      >
-        <span className="font-mono text-xs tracking-widest uppercase">Scroll</span>
-        <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
-          <ArrowDown size={16} />
-        </motion.div>
-      </motion.button>
-    </section>
+      </section>
+    </>
   );
 }

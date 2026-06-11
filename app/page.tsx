@@ -1,66 +1,32 @@
-"use client";
-
-import { useState, useEffect } from "react";
-import { AnimatePresence } from "framer-motion";
-import { LoadingScreen } from "@/components/ui/LoadingScreen";
-import { Navbar } from "@/components/sections/Navbar";
+import { Preloader } from "@/components/Preloader";
+import { CustomCursor } from "@/components/CustomCursor";
+import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
-import { Qualifications } from "@/components/sections/Qualifications";
-import { Skills } from "@/components/sections/Skills";
-import { Projects } from "@/components/sections/Projects";
-import { Certifications } from "@/components/sections/Certifications";
+import { Services } from "@/components/sections/Services";
+import { Project } from "@/components/sections/Project";
+import { Timeline } from "@/components/sections/Timeline";
 import { Contact } from "@/components/sections/Contact";
-import { Footer } from "@/components/sections/Footer";
+import { Footer } from "@/components/Footer";
+import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (mounted && isLoading) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mounted, isLoading]);
-
-  if (!mounted) {
-    return <div className="min-h-screen" style={{ backgroundColor: "var(--bg)" }} />;
-  }
-
   return (
-    <>
-      <AnimatePresence mode="wait">
-        {isLoading && (
-          <LoadingScreen
-            onComplete={() => {
-              setIsLoading(false);
-            }}
-          />
-        )}
-      </AnimatePresence>
-
-      {!isLoading && (
-        <main>
-          <Navbar />
-          <Hero />
-          <About />
-          <Qualifications />
-          <Skills />
-          <Projects />
-          <Certifications />
-          <Contact />
-          <Footer />
-        </main>
-      )}
-    </>
+    <SmoothScrollProvider>
+      <main className="relative bg-[var(--background)]">
+        <Preloader />
+        <CustomCursor />
+        <Navbar />
+        <ScrollToTop />
+        <Hero />
+        <About />
+        <Services />
+        <Project />
+        <Timeline />
+        <Contact />
+        <Footer />
+      </main>
+    </SmoothScrollProvider>
   );
 }

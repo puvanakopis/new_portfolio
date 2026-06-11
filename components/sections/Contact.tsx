@@ -1,132 +1,187 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { SectionWrapper } from "@/components/ui/SectionWrapper";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { Mail, Github, Linkedin, Phone, MapPin, Send } from "lucide-react";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Reveal } from "@/components/Reveal";
 
-const contactLinks = [
-  {
-    icon: Mail,
-    label: "Email",
-    value: "puvanakopis@gmail.com",
-    href: "mailto:puvanakopis@gmail.com",
-    color: "#2563eb",
-  },
-  {
-    icon: Phone,
-    label: "Phone",
-    value: "+94 75 46 14 044",
-    href: "tel:+94754614044",
-    color: "#2563eb",
-  },
-  {
-    icon: Github,
-    label: "GitHub",
-    value: "github.com/puvanakopis",
-    href: "https://github.com/puvanakopis",
-    color: "#3b82f6",
-  },
-  {
-    icon: Linkedin,
-    label: "LinkedIn",
-    value: "linkedin.com/in/puvanakopis",
-    href: "https://linkedin.com/in/puvanakopis",
-    color: "#1d4ed8",
-  },
-];
+gsap.registerPlugin(ScrollTrigger);
 
 export function Contact() {
+  const root = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animated border-top line reveal
+      gsap.fromTo(
+        ".contact-divider",
+        { scaleX: 0 },
+        {
+          scaleX: 1,
+          transformOrigin: "left",
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: { trigger: ".contact-divider", start: "top 88%" },
+        }
+      );
+
+      // Left content slide from left
+      gsap.from(".contact-left", {
+        opacity: 0,
+        x: -70,
+        duration: 1.1,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".contact-left", start: "top 80%" },
+      });
+
+      // Right links stagger slide in from right
+      gsap.utils.toArray<HTMLElement>(".contact-link").forEach((el, i) => {
+        gsap.from(el, {
+          opacity: 0,
+          x: 50,
+          duration: 0.8,
+          delay: i * 0.12,
+          ease: "power3.out",
+          scrollTrigger: { trigger: el, start: "top 88%" },
+        });
+      });
+
+      // CTA button scale + fade
+      gsap.from(".contact-cta", {
+        opacity: 0,
+        scale: 0.88,
+        duration: 0.9,
+        ease: "back.out(1.6)",
+        scrollTrigger: { trigger: ".contact-cta", start: "top 85%" },
+      });
+
+      // Big heading char-by-char shimmer on scroll
+      gsap.to(".contact-heading", {
+        backgroundPositionX: "0%",
+        ease: "none",
+        scrollTrigger: {
+          trigger: root.current,
+          start: "top 70%",
+          end: "bottom 50%",
+          scrub: 1,
+        },
+      });
+    }, root);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <SectionWrapper id="contact">
-      <div className="grid lg:grid-cols-2 gap-16 items-start">
-        {/* Left: Copy */}
-        <div>
-          <SectionHeader
-            tag="Contact"
-            title="Let's Build Something Together"
-            subtitle="Open to internship opportunities, freelance projects, and collaborative AI/ML work."
-          />
+    <section
+      ref={root}
+      id="contact"
+      className="overflow-hidden px-6 pb-14 pt-10 md:pb-28 md:pt-16"
+    >
+      <div className="mx-auto max-w-7xl">
+        {/* Section Label */}
+        <Reveal
+          as="span"
+          className="mb-6 block text-sm uppercase tracking-[0.3em] text-[var(--primary)]"
+          direction="left"
+        >
+          Contact
+        </Reveal>
 
-          <p className="leading-relaxed mb-8" style={{ color: "var(--text-secondary)" }}>
-            Whether you have a project in mind, want to discuss AI/ML solutions,
-            or are looking for a motivated engineering intern — I&apos;d love to hear from you.
-            I respond within 24 hours.
-          </p>
+        {/* Heading */}
+        <Reveal direction="up">
+          <h2 className="contact-heading text-display mb-16 max-w-4xl text-4xl text-[var(--foreground)] md:text-6xl">
+            Let&apos;s build something{" "}
+            <span className="text-[var(--primary)]">intelligent</span>
+          </h2>
+        </Reveal>
 
-          <div
-            className="inline-flex items-center gap-3 px-5 py-3 rounded-2xl border"
-            style={{
-              borderColor: "var(--border)",
-              backgroundColor: "var(--card-bg)",
-            }}
-          >
-            <MapPin size={14} style={{ color: "var(--accent)" }} />
-            <span className="text-sm" style={{ color: "var(--text-secondary)" }}>
-              Batticaloa, Sri Lanka
+        {/* Content */}
+        <div className="grid gap-14 md:grid-cols-[1.3fr_0.8fr] md:gap-20">
+          {/* Divider */}
+          <div className="col-span-full contact-divider h-px w-full bg-[var(--border)]" />
+
+          {/* Left Side */}
+          <div className="contact-left pt-6">
+            <span className="mb-5 block text-sm uppercase tracking-[0.2em] text-[var(--muted-foreground)]">
+              Get in touch
             </span>
+
+            <p className="mt-8 max-w-xl leading-relaxed text-[var(--muted-foreground)]">
+              Exploring opportunities to collaborate, learn, and build impactful
+              AI-driven solutions. Currently open to internships and exciting
+              project opportunities in AI Engineering and software development.
+            </p>
+
+            {/* Hero Style CTA */}
+            <div className="contact-cta mt-10 inline-block">
+              <a
+                href="mailto:puvanakopis@gmail.com"
+                data-cursor-hover
+                className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-[var(--primary)] px-8 py-4 text-sm font-medium uppercase tracking-wider text-[var(--primary-foreground)]"
+              >
+                <span className="absolute inset-0 -z-0 origin-left scale-x-0 bg-[var(--foreground)] transition-transform duration-500 ease-out group-hover:scale-x-100" />
+
+                <span className="relative z-10 transition-colors duration-300 group-hover:text-[var(--background)]">
+                  Start a conversation
+                </span>
+
+                <span className="relative z-10 transition-colors duration-300 group-hover:text-[var(--background)]">
+                  →
+                </span>
+              </a>
+            </div>
+          </div>
+
+          {/* Right Side */}
+          <div className="pt-6">
+            <span className="mb-5 block text-sm uppercase tracking-[0.2em] text-[var(--muted-foreground)]">
+              Connect
+            </span>
+
+            <div className="space-y-4">
+              <a
+                href="https://github.com/puvanakopis"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-link group flex items-center justify-between border-b border-[var(--border)] py-5 text-lg text-[var(--foreground)] transition-colors hover:text-[var(--primary)]"
+              >
+                <div className="flex items-center gap-4">
+                  <span>GitHub</span>
+                </div>
+                <span className="translate-x-0 text-[var(--muted-foreground)] transition-all duration-300 group-hover:translate-x-1 group-hover:text-[var(--primary)]">
+                  ↗
+                </span>
+              </a>
+
+              <a
+                href="https://www.linkedin.com/in/puvanakopis/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-link group flex items-center justify-between border-b border-[var(--border)] py-5 text-lg text-[var(--foreground)] transition-colors hover:text-[var(--primary)]"
+              >
+                <div className="flex items-center gap-4">
+                  <span>LinkedIn</span>
+                </div>
+                <span className="translate-x-0 text-[var(--muted-foreground)] transition-all duration-300 group-hover:translate-x-1 group-hover:text-[var(--primary)]">
+                  ↗
+                </span>
+              </a>
+
+              <a
+                href="mailto:puvanakopis@gmail.com"
+                className="contact-link group flex items-center justify-between border-b border-[var(--border)] py-5 text-lg text-[var(--foreground)] transition-colors hover:text-[var(--primary)]"
+              >
+                <div className="flex items-center gap-4">
+                  <span>Email</span>
+                </div>
+                <span className="translate-x-0 text-[var(--muted-foreground)] transition-all duration-300 group-hover:translate-x-1 group-hover:text-[var(--primary)]">
+                  ↗
+                </span>
+              </a>
+            </div>
           </div>
         </div>
-
-        {/* Right: Links */}
-        <div className="space-y-4">
-          {contactLinks.map((link, i) => {
-            const Icon = link.icon;
-            return (
-              <motion.a
-                key={link.label}
-                href={link.href}
-                target={link.href.startsWith("http") ? "_blank" : undefined}
-                rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="group flex items-center gap-5 p-5 rounded-2xl border transition-all duration-300 hover:-translate-y-0.5"
-                style={{
-                  backgroundColor: "var(--card-bg)",
-                  borderColor: "var(--card-border)",
-                  textDecoration: "none",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                    link.color + "50";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                    "var(--card-border)";
-                }}
-              >
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors duration-300"
-                  style={{ backgroundColor: `${link.color}18` }}
-                >
-                  <Icon size={18} style={{ color: link.color }} />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p
-                    className="text-xs font-mono uppercase tracking-wider mb-0.5"
-                    style={{ color: "var(--text-muted)" }}
-                  >
-                    {link.label}
-                  </p>
-                  <p
-                    className="text-sm font-medium truncate"
-                    style={{ color: "var(--text-primary)" }}
-                  >
-                    {link.value}
-                  </p>
-                </div>
-                <Send
-                  size={14}
-                  className="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                  style={{ color: link.color }}
-                />
-              </motion.a>
-            );
-          })}
-        </div>
       </div>
-    </SectionWrapper>
+    </section>
   );
 }

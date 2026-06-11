@@ -1,60 +1,32 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ThemeProvider } from "@/components/ui/ThemeProvider";
 
 export const metadata: Metadata = {
-  title: "Puvanakopis — AI/ML Engineer",
+  metadataBase: new URL("https://www.puvanakopis.me"),
+  title: "Puvanakopis — AI Engineer",
   description:
-    "AI/ML-focused Software Engineering undergraduate experienced in LLMs, RAG pipelines, and intelligent systems. Building scalable AI and web applications.",
-  keywords: [
-    "AI Engineer",
-    "ML Engineer",
-    "RAG",
-    "LLMs",
-    "FastAPI",
-    "React",
-    "Next.js",
-    "Python",
-    "Sri Lanka",
-    "Puvanakopis",
-  ],
-  authors: [{ name: "Puvanakopis", url: "https://github.com/puvanakopis" }],
-  creator: "Puvanakopis",
+    "Portfolio of Puvanakopis Mehanathan, a Software Engineering undergraduate specializing in AI Engineering, Agentic AI Systems, Large Language Models (LLMs), Retrieval-Augmented Generation (RAG), and Full-Stack AI Applications.",
+  authors: [{ name: "Puvanakopis Mehanathan" }],
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    title: "Puvanakopis — AI/ML Engineer",
+    title: "Puvanakopis — AI Engineer ",
     description:
-      "AI/ML-focused Software Engineering undergraduate experienced in LLMs, RAG pipelines, and intelligent systems.",
-    siteName: "Puvanakopis Portfolio",
+      "Building intelligent AI-powered applications using LLMs, RAG pipelines, AI agents, and modern full-stack technologies.",
+    type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Puvanakopis — AI/ML Engineer",
-    description:
-      "AI/ML-focused Software Engineering undergraduate experienced in LLMs, RAG pipelines, and intelligent systems.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-    },
+    site: "@puvanakopis",
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head />
-      <body>
-        <ThemeProvider>{children}</ThemeProvider>
-      </body>
+    <html lang="en">
+      <body>{children}</body>
     </html>
   );
 }
