@@ -97,7 +97,7 @@ export function Navbar() {
       {/* Page Transition Overlay */}
       <div
         ref={overlayRef}
-        className="pointer-events-none pt-8 fixed inset-0 z-[60] hidden origin-bottom scale-y-0 bg-[var(--primary)]"
+        className="pointer-events-none fixed inset-0 z-[60] hidden origin-bottom scale-y-0 bg-[var(--primary)]"
       />
 
       {/* Scroll Progress Bar */}
