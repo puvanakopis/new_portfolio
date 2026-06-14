@@ -149,7 +149,7 @@ export default function ProjectPage({ params }: Props) {
             <Reveal>
               <div className="overflow-hidden rounded-2xl border border-[var(--border)]">
                 <Image
-                  src={project.img}
+                  src={project.projectPageImg}
                   alt={project.title}
                   width={1600}
                   height={900}

@@ -1,6 +1,7 @@
 export type Project = {
   slug: string;
   img: string;
+  projectPageImg: string;
   title: string;
   tags: string[];
   year: string;
@@ -15,8 +16,28 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "istore",
+    img: "/istore.png",
+    projectPageImg: "/istore-full.png",
+    title: "iStore – AI-Powered E-commerce Platform",
+    tags: ["Next.js", "FastAPI", "LangChain", "MongoDB", "Docker"],
+    year: "2026",
+    role: "Full Stack Developer",
+    client: "Personal Project",
+    overview:
+      "iStore is a full-stack e-commerce platform built for a premium Apple reseller. It features a conversational AI shopping assistant powered by LangChain agents, allowing customers to browse products, manage wishlists, place orders, and track order history — all through natural language. The entire stack is containerized with Docker for seamless one-command deployment.",
+    challenge:
+      "The core challenge was building a natural, reliable shopping experience driven purely by conversation — without forcing users to click through forms or navigate pages manually. This required designing a hierarchical multi-agent system that could accurately detect user intent, maintain context across multi-turn conversations, handle complex order flows (color, storage, quantity, confirmation), and do so efficiently without excessive LLM calls or latency.",
+    solution:
+      "Implemented a hierarchical LangChain agent architecture with four specialized agents: a Main Router Agent that dispatches by intent, a Product Agent (search, browse, recommendations, trending), an Order Agent (guided 4-step purchase flow), and a Wishlist Agent. The backend is built on FastAPI with MongoDB Atlas (async via Motor), JWT authentication, OTP email verification, and a role-based admin dashboard. The Next.js 14 frontend uses the App Router with Tailwind CSS and React Context for auth/state. The full stack is containerized using multi-stage Dockerfiles and Docker Compose with health checks.",
+    outcome:
+      "Delivered a production-ready, fully containerized full-stack application launchable with a single `docker compose up --build` command. The AI assistant handles end-to-end shopping tasks — from product discovery to order confirmation — entirely via chat, eliminating manual form interactions. The admin dashboard provides complete control over products, users, and orders, while the architecture supports easy LLM swapping (Groq, OpenAI, or any LangChain-compatible model).",
+    liveUrl: "https://github.com/puvanakopis/iStore",
+  },
+  {
     slug: "sri-lanka-trip-planner-ai",
     img: "/trip-planner-multi-agents.png",
+    projectPageImg: "/project-1.jpg",
     title: "Sri Lanka Trip Planner AI",
     tags: [
       "Python",
@@ -39,10 +60,10 @@ export const projects: Project[] = [
       "Successfully deployed as a public Streamlit application capable of generating complete travel plans in seconds. Demonstrated practical implementation of multi-agent AI workflows and advanced prompt orchestration techniques.",
     liveUrl: "https://trip-planner-multi-agents.streamlit.app/",
   },
-
   {
     slug: "cinebook",
     img: "/CineBook.png",
+    projectPageImg: "/project-2.jpg",
     title: "CineBook",
     tags: [
       "Next.js",
@@ -69,6 +90,7 @@ export const projects: Project[] = [
   {
     slug: "ecommerce-ai-agent",
     img: "/ecommerce-ai-agent.png",
+    projectPageImg: "/project-3.jpg",
     title: "E-Commerce AI Agent",
     tags: [
       "Python",
@@ -95,6 +117,7 @@ export const projects: Project[] = [
   {
     slug: "campus-ease",
     img: "/CampusEase.png",
+    projectPageImg: "/project-4.jpg",
     title: "CampusEase",
     tags: [
       "React",
@@ -102,24 +125,28 @@ export const projects: Project[] = [
       "MongoDB",
       "ChromaDB",
       "Groq API",
+      "Llama 3",
       "RAG",
+      "Leaflet Maps",
     ],
     year: "2024",
     role: "Full-Stack Developer",
-    client: "Academic Project",
+    client: "Academic Project (SUSL)",
     overview:
-      "A university-focused accommodation and vehicle rental platform that helps students find housing, rent vehicles, and access information through an AI-powered assistant.",
+      "CampusEase is a university-focused accommodation and vehicle rental marketplace designed for Sabaragamuwa University of Sri Lanka (SUSL) students and staff. It connects users with local property and vehicle owners, featuring a secure multi-role portal (Student, Staff, Owner, Admin), interactive map search via React Leaflet, a booking/reservation engine, and an AI-powered RAG assistant for natural language inquiry.",
     challenge:
-      "Students frequently face difficulties locating reliable accommodation and transportation options. The project required managing multiple user roles while providing intelligent search and support functionality.",
+      "Students at SUSL face significant hurdles finding nearby accommodations (e.g., near Pambahinna junction or the main gate) and renting vehicles. The platform needed to support document-based user verification (IDs/photos), manage complex temporary booking workflows, and incorporate an intelligent assistant to parse listings, handle comparison queries, and filter availability with minimal latency.",
     solution:
-      "Developed a full-stack platform using React, FastAPI, and MongoDB. Implemented role-based access control and integrated a Retrieval-Augmented Generation (RAG) chatbot powered by ChromaDB and Groq API for intelligent question answering.",
+      "Built a web application using React (Vite) and Tailwind CSS integrated with Leaflet maps, and a FastAPI backend using asynchronous MongoDB (Motor). Implemented a Retrieval-Augmented Generation (RAG) system with a persistent ChromaDB database using HuggingFace sentence-transformers (all-MiniLM-L6-v2) for local embedding generation and the Groq API (llama-3.3-70b-versatile) with conversational memory. Developed role-based workflows allowing owners to list items and manage bookings, students to search/reserve, and administrators to verify account profiles.",
     outcome:
-      "Created a centralized solution for student accommodation and transportation needs while demonstrating the integration of RAG systems into real-world applications.",
+      "Created a centralized hub that reduces student rental search times and secure transactions. Deployed an intelligent AI chatbot that answers questions based on real-time listings, proximity to campus landmarks, and platform policies, proving the utility of semantic search and localized RAG in academic communities.",
+    liveUrl: "https://github.com/puvanakopis/CampusEase",
   },
 
   {
     slug: "smart-data-analysis-pipeline",
     img: "/smart-data-analysis-pipeline.png",
+    projectPageImg: "/project-1.jpg",
     title: "Smart Data Analysis Pipeline",
     tags: [
       "Python",
@@ -135,19 +162,20 @@ export const projects: Project[] = [
     role: "AI & Data Engineer",
     client: "Personal Project",
     overview:
-      "An AI-driven analytics platform that automates data cleaning, exploratory analysis, visualization generation, and PDF reporting using multiple specialized AI agents.",
+      "An end-to-end, AI-powered data analysis platform that automates the transition from raw CSV files to structured business intelligence. Built on Python and Streamlit, the platform utilizes a modular multi-agent architecture to orchestrate data cleaning, perform statistical exploratory analysis, auto-generate interactive visualizations, extract LLM-driven insights, and compile findings into a professional PDF report.",
     challenge:
-      "Data analysis workflows are repetitive and require expertise in preprocessing, visualization, and reporting. The challenge was automating these tasks while maintaining analytical quality and reliability.",
+      "Exploratory data analysis (EDA) and reporting workflows are traditionally repetitive, requiring manual data cleaning, statistical evaluation, chart rendering, and report compiling. Automating this entire lifecycle while maintaining high analytical reliability, handling unexpected data types or missing values, avoiding monolithic script failures, and rendering charts that dynamically adapt to any user-uploaded dataset was a major orchestrational challenge.",
     solution:
-      "Built a multi-agent analytics system that processes datasets through dedicated agents responsible for cleaning, analysis, visualization, and report generation. Leveraged Pandas, Plotly, LangChain, and Groq LLMs for end-to-end automation.",
+      "Developed a modular multi-agent pipeline using Python and LangChain. The pipeline coordinates four specialized agents: a DataCleaningAgent (handling duplicate removal, outlier capping via IQR, column normalizations, and auto-type conversion), a DataAnalysisAgent (calculating descriptive statistics, correlation matrices, and group-by aggregations), a VisualizationAgent (generating dynamic Plotly charts such as histograms, scatter plots with regression trendlines, box plots, heatmaps, and time-series), and an InsightGeneratorAgent using Groq's llama-3.3-70b-versatile to extract structured business insights. A custom FPDF-based reporting engine compiles all results into a download-ready PDF report.",
     outcome:
-      "Reduced the effort required for exploratory data analysis and reporting while showcasing the potential of AI agents in business intelligence workflows.",
+      "Delivered a responsive Streamlit dashboard where users can upload any CSV and receive structured statistical summaries, interactive Plotly visualizations, and AI-generated executive summaries and anomalies in seconds. The multi-agent workflow isolates processing stages, ensuring error resilience and detailed stage metrics while showcasing the practical applications of collaborative agentic systems in business intelligence.",
     liveUrl: "https://data-analyst-multi-agents.streamlit.app/",
   },
 
   {
     slug: "footstyle-ecommerce-platform",
     img: "/FootStyle.png",
+    projectPageImg: "/project-2.jpg",
     title: "FootStyle E-Commerce Platform",
     tags: [
       "Next.js",
@@ -175,6 +203,7 @@ export const projects: Project[] = [
   {
     slug: "social-media-health-analysis",
     img: "/social-media-health-analysis.png",
+    projectPageImg: "/project-3.jpg",
     title: "Social Media Health Analysis",
     tags: [
       "Python",

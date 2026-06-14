@@ -304,7 +304,7 @@ export function Hero() {
 
           {/* Portrait */}
           <div className="hero-image relative mx-auto hidden w-full max-w-sm lg:block lg:max-w-none">
-            <div className="overflow-hidden rounded-2xl border border-[var(--border)]">
+            <div className="overflow-hidden">
               <Image
                 src="/portrait.png"
                 alt="Portrait of Puvanakopis"

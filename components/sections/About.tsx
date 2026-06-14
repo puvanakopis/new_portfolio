@@ -134,12 +134,12 @@ export function About() {
     <section
       ref={root}
       id="about"
-      className="overflow-hidden px-6 pb-14 pt-10 md:pb-28 md:pt-16"
+      className="overflow-hidden px-6 pb-14 pt-4 md:pb-28 md:pt-1"
     >
       <div className="mx-auto grid max-w-7xl gap-14 md:grid-cols-2 md:gap-20">
         <div ref={imgWrap} className="overflow-hidden rounded-2xl">
           <Image
-            src="/portrait.png"
+            src="/puvan_about.png"
             alt="Portrait of Puvanakopis Mehanathan"
             width={600}
             height={9000}
