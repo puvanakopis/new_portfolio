@@ -74,7 +74,7 @@ export function Navbar() {
       setScrollProgress(docHeight > 0 ? (scrollY / docHeight) * 100 : 0);
 
       // Use getBoundingClientRect for accurate position relative to viewport
-      const threshold = window.innerHeight * 0.4; 
+      const threshold = window.innerHeight * 0.4;
       let current = "";
       for (const id of sectionIds) {
         const el = document.getElementById(id);
@@ -108,17 +108,15 @@ export function Navbar() {
 
       <header
         ref={navRef}
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-          scrolled
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled || open
             ? "border-b border-[var(--border)] bg-[var(--background)]/70 backdrop-blur-xl"
             : "border-b border-transparent"
-        }`}
+          }`}
       >
         <div className="mx-auto max-w-7xl px-6">
           <nav
-            className={`flex items-center justify-between transition-all duration-500 ${
-              scrolled ? "h-20" : "h-24"
-            }`}
+            className={`flex items-center justify-between transition-all duration-500 ${scrolled ? "h-20" : "h-24"
+              }`}
           >
             {/* Logo */}
             <a
@@ -135,18 +133,16 @@ export function Navbar() {
                 <li key={link.href}>
                   <a
                     onClick={handleNav(link.href)}
-                    className={`nav-link relative inline-block cursor-pointer text-base transition-colors duration-300 hover:text-[var(--foreground)] ${
-                      activeSection === link.href
+                    className={`nav-link relative inline-block cursor-pointer text-base transition-colors duration-300 hover:text-[var(--foreground)] ${activeSection === link.href
                         ? "text-[var(--foreground)]"
                         : "text-[var(--muted-foreground)]"
-                    }`}
+                      }`}
                   >
                     {link.label}
                     {/* Active underline dot */}
                     <span
-                      className={`absolute -bottom-1 left-0 h-px bg-[var(--primary)] transition-all duration-300 ${
-                        activeSection === link.href ? "w-full" : "w-0"
-                      }`}
+                      className={`absolute -bottom-1 left-0 h-px bg-[var(--primary)] transition-all duration-300 ${activeSection === link.href ? "w-full" : "w-0"
+                        }`}
                     />
                   </a>
                 </li>
@@ -176,11 +172,10 @@ export function Navbar() {
 
         {/* Mobile Menu */}
         <div
-          className={`overflow-hidden transition-all duration-500 md:hidden ${
-            open
+          className={`overflow-hidden transition-all duration-500 md:hidden ${open
               ? "max-h-[400px] border-t border-[var(--border)]"
               : "max-h-0"
-          }`}
+            }`}
         >
           <div className="mx-auto max-w-7xl px-6 py-6">
             <ul className="flex flex-col gap-5">
@@ -196,11 +191,10 @@ export function Navbar() {
                 >
                   <a
                     onClick={handleNav(link.href)}
-                    className={`block cursor-pointer text-lg transition-colors hover:text-[var(--foreground)] ${
-                      activeSection === link.href
+                    className={`block cursor-pointer text-lg transition-colors hover:text-[var(--foreground)] ${activeSection === link.href
                         ? "text-[var(--primary)]"
                         : "text-[var(--muted-foreground)]"
-                    }`}
+                      }`}
                   >
                     {link.label}
                   </a>

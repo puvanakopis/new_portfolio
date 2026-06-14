@@ -109,7 +109,7 @@ export function Services() {
                 <h3 className="service-title text-display text-2xl text-[var(--foreground)] transition-transform duration-300 group-hover:translate-x-2 group-hover:text-[var(--primary)] md:text-4xl">
                   {s.title}
                 </h3>
-                <p className="service-desc col-span-2 max-h-0 overflow-hidden text-[var(--muted-foreground)] opacity-0 transition-all duration-500 group-hover:max-h-40 group-hover:opacity-100 md:col-span-1 md:max-h-40 md:opacity-60 md:group-hover:opacity-100">
+                <p className="service-desc col-span-2 mt-2 max-h-40 text-[var(--muted-foreground)] opacity-70 transition-all duration-500 md:col-span-1 md:mt-0 md:opacity-60 md:group-hover:opacity-100">
                   {s.desc}
                 </p>
               </div>
