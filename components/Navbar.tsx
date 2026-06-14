@@ -33,32 +33,41 @@ export function Navbar() {
   // Entrance animation: nav slides down on load
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(navRef.current, {
-        y: -80,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
-        delay: 0.3,
-      });
+      gsap.fromTo(navRef.current,
+        { y: -80, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
+          delay: 0.3,
+        }
+      );
 
       // Stagger nav links
-      gsap.from(".nav-link", {
-        opacity: 0,
-        y: -16,
-        duration: 0.6,
-        stagger: 0.08,
-        ease: "power3.out",
-        delay: 0.6,
-      });
+      gsap.fromTo(".nav-link",
+        { opacity: 0, y: -16 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.08,
+          ease: "power3.out",
+          delay: 0.6,
+        }
+      );
 
       // CTA button fade in
-      gsap.from(".nav-cta", {
-        opacity: 0,
-        scale: 0.85,
-        duration: 0.7,
-        ease: "back.out(1.5)",
-        delay: 1.1,
-      });
+      gsap.fromTo(".nav-cta",
+        { opacity: 0, scale: 0.85 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.7,
+          ease: "back.out(1.5)",
+          delay: 1.1,
+        }
+      );
     }, navRef);
 
     return () => ctx.revert();
@@ -109,8 +118,8 @@ export function Navbar() {
       <header
         ref={navRef}
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled || open
-            ? "border-b border-[var(--border)] bg-[var(--background)]/70 backdrop-blur-xl"
-            : "border-b border-transparent"
+          ? "border-b border-[var(--border)] bg-[var(--background)]/70 backdrop-blur-xl"
+          : "border-b border-transparent"
           }`}
       >
         <div className="mx-auto max-w-7xl px-6">
@@ -134,8 +143,8 @@ export function Navbar() {
                   <a
                     onClick={handleNav(link.href)}
                     className={`nav-link relative inline-block cursor-pointer text-base transition-colors duration-300 hover:text-[var(--foreground)] ${activeSection === link.href
-                        ? "text-[var(--foreground)]"
-                        : "text-[var(--muted-foreground)]"
+                      ? "text-[var(--foreground)]"
+                      : "text-[var(--muted-foreground)]"
                       }`}
                   >
                     {link.label}
@@ -173,8 +182,8 @@ export function Navbar() {
         {/* Mobile Menu */}
         <div
           className={`overflow-hidden transition-all duration-500 md:hidden ${open
-              ? "max-h-[400px] border-t border-[var(--border)]"
-              : "max-h-0"
+            ? "max-h-[400px] border-t border-[var(--border)]"
+            : "max-h-0"
             }`}
         >
           <div className="mx-auto max-w-7xl px-6 py-6">
@@ -192,8 +201,8 @@ export function Navbar() {
                   <a
                     onClick={handleNav(link.href)}
                     className={`block cursor-pointer text-lg transition-colors hover:text-[var(--foreground)] ${activeSection === link.href
-                        ? "text-[var(--primary)]"
-                        : "text-[var(--muted-foreground)]"
+                      ? "text-[var(--primary)]"
+                      : "text-[var(--muted-foreground)]"
                       }`}
                   >
                     {link.label}
