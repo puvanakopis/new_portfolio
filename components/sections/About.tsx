@@ -21,7 +21,10 @@ const skills = [
   "MongoDB",
   "PostgreSQL",
   "ChromaDB",
+  "Pinecone",
   "OpenAI API",
+  "Hugging Face",
+  "Streamlit",
   "Docker",
   "Git",
   "Machine Learning",
@@ -160,18 +163,17 @@ export function About() {
           <Reveal delay={1} direction="up">
             <p className="mb-5 max-w-lg leading-relaxed text-[var(--muted-foreground)]">
               I&apos;m a third-year Software Engineering undergraduate at
-              Sabaragamuwa University of Sri Lanka, focused on Artificial
-              Intelligence and Machine Learning. I build intelligent systems at
-              the intersection of AI and software engineering to solve
-              real-world problems.
+              Sabaragamuwa University of Sri Lanka, specializing in <strong>AI Engineering</strong>.
+              I build and deploy production-grade LLM systems from multi agent conversational
+              assistants to RAG powered platforms with a focus on real world impact.
             </p>
 
             <p className="mb-10 max-w-lg leading-relaxed text-[var(--muted-foreground)]">
-              I&apos;ve developed RAG-based chatbots, AI agents, and full-stack
-              applications using tools like React, Next.js, FastAPI, and vector
-              databases. As a freelance AI developer, I deliver end-to-end
-              solutions—from idea to deployment— with a focus on reliability
-              and impact.
+              I&apos;ve developed end to end AI products including <strong>iStore</strong> (a LangGraph based
+              multi agent shopping assistant), <strong>CampusEase</strong> (a RAG powered university accommodation
+              platform using ChromaDB), and a <strong>Smart Data Analysis multi agent system</strong> for automated
+              analytics. As a freelancer, I ship full stack solutions using FastAPI,
+              Next.js, and Docker combining cutting edge AI with robust software engineering.
             </p>
           </Reveal>
 
@@ -189,13 +191,14 @@ export function About() {
 
           <Reveal delay={3} direction="up">
             <a
-              href="/Puvanakopis_Mehanathan_CV.pdf"
-              download
+              href="/Puvanakopis_CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group uppercase inline-flex w-fit items-center gap-3 rounded-full bg-[var(--primary)] px-7 py-3.5 text-sm font-medium text-[var(--primary-foreground)]"
             >
-              Download CV
+              View CV
               <span className="transition-transform group-hover:translate-y-0.5">
-                ↓
+                ↗
               </span>
             </a>
           </Reveal>
