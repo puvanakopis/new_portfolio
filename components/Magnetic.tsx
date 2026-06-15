@@ -19,7 +19,13 @@ export function Magnetic({
   const ref = useRef<HTMLSpanElement>(null);
 
   const handleMove = (e: React.MouseEvent<HTMLSpanElement>) => {
-    if (!window.matchMedia("(pointer: fine)").matches) return;
+    const isTouchDevice =
+      typeof window !== "undefined" &&
+      (!window.matchMedia("(pointer: fine)").matches ||
+        "ontouchstart" in window ||
+        navigator.maxTouchPoints > 0);
+
+    if (isTouchDevice) return;
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();

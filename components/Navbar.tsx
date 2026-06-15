@@ -191,11 +191,11 @@ export function Navbar() {
               {links.map((link, i) => (
                 <li
                   key={link.href}
+                  className="transition-[opacity,transform] duration-500 ease-out"
                   style={{
                     transitionDelay: open ? `${i * 60}ms` : "0ms",
                     opacity: open ? 1 : 0,
                     transform: open ? "translateX(0)" : "translateX(-16px)",
-                    transition: "opacity 0.4s ease, transform 0.4s ease",
                   }}
                 >
                   <a

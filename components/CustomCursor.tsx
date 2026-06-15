@@ -10,7 +10,13 @@ export function CustomCursor() {
   const [hovering, setHovering] = useState(false);
 
   useEffect(() => {
-    if (!window.matchMedia("(pointer: fine)").matches) return;
+    const isTouchDevice =
+      typeof window !== "undefined" &&
+      (!window.matchMedia("(pointer: fine)").matches ||
+        "ontouchstart" in window ||
+        navigator.maxTouchPoints > 0);
+
+    if (isTouchDevice) return;
     setEnabled(true);
     document.documentElement.classList.add("custom-cursor-active");
 
