@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     "Portfolio of Puvanakopis Mehanathan, a Software Engineering undergraduate specializing in AI Engineering, Agentic AI Systems, Large Language Models (LLMs), Retrieval-Augmented Generation (RAG), and Full-Stack AI Applications.",
   authors: [{ name: "Puvanakopis Mehanathan" }],
   openGraph: {
-    title: "Puvanakopis — AI Engineer ",
+    title: "Puvanakopis — AI Engineer",
     description:
       "Building intelligent AI-powered applications using LLMs, RAG pipelines, AI agents, and modern full-stack technologies.",
     type: "website",
