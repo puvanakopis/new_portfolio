@@ -28,7 +28,7 @@
 
   /* Font variables (overridden by next/font/google in layout.tsx) */
   --font-display: "Space Grotesk", sans-serif;
-  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-sans: "Inter", sans-serif;
 }
 
 /* ─── Base layer ─── */
