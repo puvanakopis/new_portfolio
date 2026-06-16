@@ -306,7 +306,7 @@ export function Hero() {
           <div className="hero-image relative mx-auto hidden w-full max-w-sm lg:block lg:max-w-none">
             <div className="overflow-hidden">
               <Image
-                src="/portrait.png"
+                src="/puvan1.png"
                 alt="Portrait of Puvanakopis"
                 width={800}
                 height={1000}

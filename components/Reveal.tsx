@@ -54,7 +54,7 @@ export function Reveal({
   as = "div",
   direction = "up",
   distance = 48,
-  once = true,
+  once = false,
 }: {
   children: ReactNode;
   className?: string;
