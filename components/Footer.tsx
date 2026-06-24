@@ -118,7 +118,7 @@ export function Footer() {
             </Reveal>
 
             <Reveal delay={1} direction="up">
-              <p className="mt-5 max-w-md text-sm leading-relaxed text-[var(--muted-foreground)]">
+              <p className="mt-5 max-w-md mx-auto md:mx-0 text-sm leading-relaxed text-[var(--muted-foreground)]">
                 Open to AI internships, freelance projects, and collaboration on
                 LLM-based systems, RAG pipelines, and agentic architectures.
               </p>
@@ -126,7 +126,7 @@ export function Footer() {
           </div>
 
           {/* Right */}
-          <div className="footer-right flex flex-col items-start md:items-end">
+          <div className="footer-right flex flex-col items-center md:items-end">
             <div className="flex gap-4">
               <a
                 href="https://github.com/puvanakopis"
@@ -152,7 +152,7 @@ export function Footer() {
               </a>
             </div>
 
-            <div className="footer-copy mt-8 text-right">
+            <div className="footer-copy mt-8 text-center md:text-right">
               <p className="text-sm text-[var(--muted-foreground)]">
                 Based in Sri Lanka
               </p>

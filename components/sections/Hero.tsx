@@ -206,14 +206,14 @@ export function Hero() {
 
         <div className="mx-auto grid w-full max-w-7xl items-center gap-10 lg:grid-cols-[1.35fr_0.9fr] lg:gap-14">
           {/* Text Column */}
-          <div className="hero-text-col min-w-0">
-            <p className="hero-eyebrow mb-8 flex items-center gap-3 text-sm uppercase tracking-[0.3em] text-[var(--muted-foreground)]">
+          <div className="hero-text-col min-w-0 flex flex-col items-center text-center lg:items-start lg:text-left">
+            <p className="hero-eyebrow mb-8 flex items-center justify-center lg:justify-start gap-3 text-sm uppercase tracking-[0.3em] text-[var(--muted-foreground)]">
               <span className="h-px w-10 bg-[var(--primary)]" />
               Available for AI Internships
             </p>
 
             <h1
-              className="text-display flex flex-col text-[var(--foreground)]"
+              className="text-display flex flex-col items-center lg:items-start text-[var(--foreground)]"
               style={{ fontSize: "clamp(2.25rem, 5.2vw, 5rem)" }}
             >
               <span className="reveal-mask hero-word">
@@ -227,7 +227,7 @@ export function Hero() {
               </span>
             </h1>
 
-            <p className="hero-fade mt-10 max-w-2xl text-lg leading-relaxed text-[var(--muted-foreground)]">
+            <p className="hero-fade mt-10 max-w-2xl mx-auto lg:mx-0 text-lg leading-relaxed text-[var(--muted-foreground)]">
               Software Engineering undergraduate specializing in AI
               Engineering, Agentic AI Systems, Large Language Models (LLMs),
               Retrieval-Augmented Generation (RAG), and Full-Stack AI
@@ -235,7 +235,7 @@ export function Hero() {
             </p>
 
             {/* CTA Buttons */}
-            <div className="hero-fade mt-10 flex flex-wrap items-center gap-4">
+            <div className="hero-fade mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-4">
               <button
                 onClick={handleNav("#project")}
                 className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-[var(--primary)] px-8 py-4 text-sm font-medium uppercase tracking-wider text-[var(--primary-foreground)] transition-transform duration-300 hover:-translate-y-0.5"
@@ -266,8 +266,8 @@ export function Hero() {
             </div>
 
             {/* Social Links */}
-            <div className="hero-fade mt-14">
-              <div className="flex flex-wrap items-center gap-5 pt-8">
+            <div className="hero-fade mt-14 w-full">
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-5 pt-8">
                 <a
                   href="https://github.com/puvanakopis"
                   target="_blank"
@@ -301,7 +301,6 @@ export function Hero() {
               </div>
             </div>
           </div>
-
           {/* Portrait */}
           <div className="hero-image relative mx-auto hidden w-full max-w-sm lg:block lg:max-w-none">
             <div className="overflow-hidden">

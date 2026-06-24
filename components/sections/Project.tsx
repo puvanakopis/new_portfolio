@@ -180,7 +180,7 @@ export function Project() {
 
       <div
         ref={track}
-        className="flex w-full flex-col gap-6 px-6 md:w-max md:flex-row md:items-center md:px-12 md:pt-10 pb-16 md:pb-24"
+        className="flex w-full flex-col gap-6 px-0 md:w-max md:flex-row md:items-center md:px-12 md:pt-10 pb-16 md:pb-24"
       >
         {projects.map((p, i) => (
           <Card key={p.slug} p={p} index={i} />
