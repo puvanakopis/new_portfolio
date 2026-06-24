@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Link from "next/link";
 import Image from "next/image";
 import { Reveal } from "@/components/Reveal";
 import { projects, type Project } from "@/data/projects";
@@ -11,14 +10,8 @@ import { projects, type Project } from "@/data/projects";
 gsap.registerPlugin(ScrollTrigger);
 
 function Card({ p, index }: { p: Project; index: number }) {
-  return (
-    <Link
-      href={`/project/${p.slug}`}
-      data-cursor-hover
-      className="group relative block w-full shrink-0 overflow-hidden rounded-2xl border border-[var(--border)] md:w-[34vw]"
-      style={{ opacity: 0 }}
-      data-project-card
-    >
+  const content = (
+    <>
       <div className="aspect-[3/2] overflow-hidden">
         <Image
           src={p.img}
@@ -46,14 +39,42 @@ function Card({ p, index }: { p: Project; index: number }) {
             ))}
           </div>
         </div>
-        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[var(--border)] text-lg transition-all duration-300 group-hover:border-[var(--primary)] group-hover:bg-[var(--primary)] group-hover:text-[var(--primary-foreground)]">
-          ↗
-        </span>
+        {p.liveUrl && (
+          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[var(--border)] text-lg transition-all duration-300 group-hover:border-[var(--primary)] group-hover:bg-[var(--primary)] group-hover:text-[var(--primary-foreground)]">
+            ↗
+          </span>
+        )}
       </div>
       <span className="absolute right-6 top-6 text-xs text-[var(--muted-foreground)]">
         {p.year}
       </span>
-    </Link>
+    </>
+  );
+
+  if (p.liveUrl) {
+    return (
+      <a
+        href={p.liveUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-cursor-hover
+        className="group relative block w-full shrink-0 overflow-hidden rounded-2xl border border-[var(--border)] md:w-[34vw]"
+        style={{ opacity: 0 }}
+        data-project-card
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <div
+      className="group relative block w-full shrink-0 overflow-hidden rounded-2xl border border-[var(--border)] md:w-[34vw]"
+      style={{ opacity: 0 }}
+      data-project-card
+    >
+      {content}
+    </div>
   );
 }
 
