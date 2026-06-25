@@ -12,7 +12,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "istore",
-    img: "/iStore.png",
+    img: "/istore.png",
     title: "iStore – AI Agent & Full Stack",
     tags: ["Next.js", "FastAPI", "LangChain", "MongoDB", "Docker"],
     year: "2026",
