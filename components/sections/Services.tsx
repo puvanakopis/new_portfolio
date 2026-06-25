@@ -11,22 +11,17 @@ const services = [
   {
     num: "01",
     title: "AI Engineering",
-    desc: "Building production-ready AI applications using LLMs, LangChain, LangGraph, RAG pipelines, embeddings, and modern AI frameworks.",
+    desc: "Building production AI systems using LLMs, LangChain/LangGraph, RAG pipelines, and vector databases. Focused on multi-agent architectures, tool-calling workflows, and scalable AI backend design.",
   },
   {
     num: "02",
-    title: "Agentic AI Systems",
-    desc: "Designing multi-agent workflows, tool-calling architectures, AI assistants, and autonomous systems that solve complex business problems.",
+    title: "Data Analytics",
+    desc: "Extracting insights from data using statistical analysis, feature engineering, and visualization. Experienced in EDA, anomaly detection, and building interactive dashboards with Python-based analytics tools.",
   },
   {
     num: "03",
-    title: "Data Analytics",
-    desc: "Transforming raw data into actionable insights through data analysis, dashboards, visualization, statistical analysis, and business intelligence solutions.",
-  },
-  {
-    num: "04",
     title: "Full-Stack Development",
-    desc: "Developing scalable AI-powered web applications using Next.js, FastAPI, Python, MongoDB, vector databases, and cloud-ready architectures.",
+    desc: "Developing AI-powered web applications using Next.js and FastAPI with secure APIs, authentication systems, and database integration. Focused on scalable, production-ready architectures with modern deployment practices.",
   },
 ];
 
@@ -96,7 +91,7 @@ export function Services() {
         </Reveal>
         <Reveal direction="up">
           <h2 className="text-display mb-16 max-w-2xl text-4xl text-[var(--foreground)] md:text-6xl">
-            Building Intelligent Digital Solutions
+            What I can help you <span className="text-[var(--primary)]">build?</span>
           </h2>
         </Reveal>
 
@@ -109,7 +104,7 @@ export function Services() {
                 <h3 className="service-title text-display text-2xl text-[var(--foreground)] transition-transform duration-300 group-hover:translate-x-2 group-hover:text-[var(--primary)] md:text-4xl">
                   {s.title}
                 </h3>
-                <p className="service-desc col-span-2 mt-2 max-h-40 text-[var(--muted-foreground)] opacity-70 transition-all duration-500 md:col-span-1 md:mt-0 md:opacity-60 md:group-hover:opacity-100">
+                <p className="service-desc col-span-2 mt-2 max-h-40 text-[var(--muted-foreground)] opacity-90 transition-all duration-500 md:col-span-1 md:mt-0 md:opacity-90 md:group-hover:opacity-100">
                   {s.desc}
                 </p>
               </div>

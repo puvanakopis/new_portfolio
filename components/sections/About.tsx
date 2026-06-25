@@ -9,27 +9,6 @@ import { Counter } from "@/components/Counter";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const skills = [
-  "Python",
-  "AI Agents",
-  "LLMs",
-  "RAG",
-  "LangChain",
-  "LangGraph",
-  "FastAPI",
-  "Next.js",
-  "MongoDB",
-  "PostgreSQL",
-  "ChromaDB",
-  "Pinecone",
-  "OpenAI API",
-  "Hugging Face",
-  "Streamlit",
-  "Docker",
-  "Git",
-  "Machine Learning",
-];
-
 const stats = [
   { value: 7, suffix: "+", label: "AI Projects" },
   { value: 3, suffix: "+", label: "Professional Certificates" },
@@ -137,7 +116,7 @@ export function About() {
     <section
       ref={root}
       id="about"
-      className="overflow-hidden px-6 pb-14 pt-4 md:pb-28 md:pt-1"
+      className="overflow-hidden px-6 pb-14 md:pb-28"
     >
       <div className="mx-auto grid max-w-7xl gap-14 md:grid-cols-2 md:gap-20">
         <div ref={imgWrap} className="overflow-hidden rounded-2xl">
@@ -157,37 +136,39 @@ export function About() {
           </Reveal>
           <Reveal direction="up">
             <h2 className="text-display mb-8 text-4xl text-[var(--foreground)] md:text-5xl">
-              Transforming AI ideas into real-world products.
+              Who I am and <span className="text-[var(--primary)]">what I build?</span>
             </h2>
           </Reveal>
           <Reveal delay={1} direction="up">
             <p className="mb-5 max-w-lg leading-relaxed text-[var(--muted-foreground)]">
-              I&apos;m a third-year Software Engineering undergraduate at
-              Sabaragamuwa University of Sri Lanka, specializing in <strong>AI Engineering</strong>.
-              I build and deploy production-grade LLM systems from multi agent conversational
-              assistants to RAG powered platforms with a focus on real world impact.
+              I’m a Software Engineering undergraduate focused on building AI systems using LLMs, agentic workflows, and RAG. I develop full-stack AI applications with FastAPI, Next.js, and vector databases, turning machine learning concepts into working products.
             </p>
 
             <p className="mb-10 max-w-lg leading-relaxed text-[var(--muted-foreground)]">
-              I&apos;ve developed end to end AI products including <strong>iStore</strong> (a LangGraph based
-              multi agent shopping assistant), <strong>CampusEase</strong> (a RAG powered university accommodation
-              platform using ChromaDB), and a <strong>Smart Data Analysis multi agent system</strong> for automated
-              analytics. As a freelancer, I ship full stack solutions using FastAPI,
-              Next.js, and Docker combining cutting edge AI with robust software engineering.
+              My experience includes multi-agent systems, conversational AI, and data analytics pipelines built with LangChain and LangGraph, with a focus on practical system design and deployment.
             </p>
           </Reveal>
 
-          {/* Skill tags */}
-          <div className="skills-wrap mb-10 flex flex-wrap gap-3">
-            {skills.map((s) => (
-              <span
-                key={s}
-                className="skill-tag rounded-full border border-[var(--border)] px-4 py-2 text-sm text-[var(--muted-foreground)] transition-colors hover:border-[var(--primary)] hover:text-[var(--primary)]"
-              >
-                {s}
-              </span>
-            ))}
-          </div>
+
+          {/* Identity block */}
+          <Reveal delay={2} direction="up">
+            <div className="mb-10 grid gap-4 text-sm">
+              <div className="flex justify-between">
+                <span className="text-[var(--muted-foreground)]">Location</span>
+                <span className="text-[var(--foreground)]">Batticaloa, Sri Lanka</span>
+              </div>
+
+              <div className="flex justify-between">
+                <span className="text-[var(--muted-foreground)]">University</span>
+                <span className="text-[var(--foreground)]">Sabaragamuwa University of Sri Lanka</span>
+              </div>
+
+              <div className="flex justify-between">
+                <span className="text-[var(--muted-foreground)]">Focus</span>
+                <span className="text-[var(--foreground)]">AI Engineering & Software Systems</span>
+              </div>
+            </div>
+          </Reveal>
 
           <Reveal delay={3} direction="up">
             <a

@@ -9,7 +9,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const items = [
   {
-    year: "2024",
+    startYear: 2023,
+    endYear: 2024,
     role: "Full Stack Developer",
     company: "Fiverr (Freelance)",
     desc: "Developed responsive full-stack web applications using React.js, Next.js, Node.js, and Express.js. Built REST APIs, authentication systems, and scalable digital solutions while delivering client-focused projects across multiple domains.",
@@ -124,7 +125,7 @@ export function Timeline() {
 
         <Reveal direction="up">
           <h2 className="text-display mb-16 max-w-3xl text-4xl text-[var(--foreground)] md:text-6xl">
-            Building AI Solutions Through Learning &amp; Practice
+            Where I’ve worked and <span className="text-[var(--primary)]">what I’ve built?</span>
           </h2>
         </Reveal>
 
@@ -138,16 +139,14 @@ export function Timeline() {
           </div>
 
           {items.map((item) => (
-            <div key={`${item.year}-${item.role}`} className="group md:pl-8">
+            <div key={`${item.startYear}-${item.role}`} className="group md:pl-8">
               <span className="timeline-line block h-px w-full bg-[var(--border)]" />
 
-              <div className="timeline-item grid grid-cols-1 gap-6 py-8 md:grid-cols-[120px_1.2fr_1fr] md:items-center md:gap-10 md:py-10">
+              <div className="timeline-item grid grid-cols-1 gap-6 py-8 md:grid-cols-[180px_1.2fr_1fr] md:items-center md:gap-10 md:py-10">
                 {/* Year */}
-                <div>
-                  <span className="timeline-year text-display text-2xl text-[var(--muted-foreground)] transition-colors duration-300 group-hover:text-[var(--primary)] md:text-4xl">
-                    {item.year}
-                  </span>
-                </div>
+                <span className="timeline-year text-display text-2xl text-[var(--muted-foreground)] transition-colors duration-300 group-hover:text-[var(--primary)] md:text-4xl whitespace-nowrap">
+                  {item.startYear} - {item.endYear ?? "Present"}
+                </span>
 
                 {/* Role */}
                 <div>

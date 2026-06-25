@@ -228,10 +228,7 @@ export function Hero() {
             </h1>
 
             <p className="hero-fade mt-10 max-w-2xl mx-auto lg:mx-0 text-lg leading-relaxed text-[var(--muted-foreground)]">
-              Software Engineering undergraduate specializing in AI
-              Engineering, Agentic AI Systems, Large Language Models (LLMs),
-              Retrieval-Augmented Generation (RAG), and Full-Stack AI
-              Applications.
+              Software Engineering undergraduate passionate about building AI agents, RAG systems, and full-stack applications. I enjoy transforming complex problems into intelligent, scalable solutions that deliver real-world impact.
             </p>
 
             {/* CTA Buttons */}
@@ -253,13 +250,13 @@ export function Hero() {
 
               <button
                 onClick={handleNav("#contact")}
-                className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full border border-[var(--border)] px-8 py-4 text-sm font-medium uppercase tracking-wider transition-colors hover:border-[var(--primary)]"
+                className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full border border-[var(--primary)] px-8 py-4 text-sm font-medium uppercase tracking-wider text-[var(--primary)] transition-all duration-300 hover:bg-[var(--primary)] hover:text-[var(--primary-foreground)] hover:shadow-[0_0_20px_rgba(200,255,0,0.3)]"
               >
-                <span className="relative z-10 transition-colors duration-300 group-hover:text-[var(--primary)]">
+                <span className="relative z-10 transition-colors duration-300">
                   Let's Talk
                 </span>
 
-                <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:text-[var(--primary)]">
+                <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-0.5">
                   →
                 </span>
               </button>
