@@ -1,7 +1,6 @@
 export type Project = {
   slug: string;
   img: string;
-  projectPageImg: string;
   title: string;
   tags: string[];
   year: string;
@@ -14,19 +13,17 @@ export const projects: Project[] = [
   {
     slug: "istore",
     img: "/istore.png",
-    projectPageImg: "/istore-full.png",
     title: "iStore – AI Agent & Full Stack",
     tags: ["Next.js", "FastAPI", "LangChain", "MongoDB", "Docker"],
     year: "2026",
     overview:
-      "iStore is a full-stack e-commerce platform built for a premium Apple reseller. It features a conversational AI shopping assistant powered by LangChain agents, allowing customers to browse products, manage wishlists, place orders, and track order history — all through natural language. The entire stack is containerized with Docker for seamless one-command deployment.",
+      "iStore is a full-stack e-commerce application integrated with an AI agent that enables conversational shopping. Users can interact with the system using natural language to browse products, manage wishlists, and complete purchases. The backend is powered by FastAPI, with a LangChain-based agent orchestrating intelligent user interactions, and the system is containerized using Docker for deployment.",
     githubUrl: "https://github.com/puvanakopis/iStore",
   },
   {
-    slug: "sri-lanka-trip-planner-ai",
-    img: "/trip-planner-multi-agents.png",
-    projectPageImg: "/project-1.jpg",
-    title: "Sri Lanka Trip Planner AI - AI Agent",
+    slug: "ceylon-trip-ai",
+    img: "/CeylonTrip_AI.png",
+    title: "CeylonTrip AI - AI Agent",
     tags: [
       "Python",
       "LangChain",
@@ -38,13 +35,12 @@ export const projects: Project[] = [
     year: "2025",
     overview:
       "An intelligent travel planning platform that generates personalized Sri Lanka itineraries using a collaborative multi-agent AI architecture. The system helps travelers create optimized trips based on preferences, destinations, budgets, and travel duration.",
-    githubUrl: "https://github.com/puvanakopis/trip-planner-multi-agents",
-    liveUrl: "https://trip-planner-multi-agents.streamlit.app/",
+    githubUrl: "https://github.com/puvanakopis/CeylonTrip-AI",
+    liveUrl: "https://ceylontrip-ai.streamlit.app",
   },
   {
     slug: "cinebook",
     img: "/CineBook.png",
-    projectPageImg: "/project-2.jpg",
     title: "CineBook - Full Stack",
     tags: [
       "Next.js",
@@ -58,29 +54,11 @@ export const projects: Project[] = [
     year: "2025",
     overview:
       "A modern movie ticket booking platform enhanced with AI-powered assistants that help users discover movies, view showtimes, and complete bookings more efficiently.",
-  },
-  {
-    slug: "ecommerce-ai-agent",
-    img: "/ecommerce-ai-agent.png",
-    projectPageImg: "/project-3.jpg",
-    title: "E-Commerce AI Agent - AI Agent",
-    tags: [
-      "Python",
-      "LangGraph",
-      "LangChain",
-      "ChatGroq",
-      "SQLite",
-      "Pydantic",
-    ],
-    year: "2025",
-    overview:
-      "A conversational AI shopping assistant designed to improve online shopping experiences by helping customers search products, track orders, and receive instant support.",
-    liveUrl: "https://ecommerce-ai-agent-01.streamlit.app/",
+    githubUrl: "https://github.com/puvanakopis/Cinebook",
   },
   {
     slug: "campus-ease",
     img: "/CampusEase.png",
-    projectPageImg: "/project-4.jpg",
     title: "CampusEase - RAG & Full Stack",
     tags: [
       "React",
@@ -100,8 +78,7 @@ export const projects: Project[] = [
   {
     slug: "smart-data-analysis-pipeline",
     img: "/smart-data-analysis-pipeline.png",
-    projectPageImg: "/project-1.jpg",
-    title: "Smart Data Analysis Pipeline - AI Agent",
+    title: "Smart Data Analysis Agent - AI Agent",
     tags: [
       "Python",
       "Streamlit",
@@ -115,12 +92,12 @@ export const projects: Project[] = [
     year: "2025",
     overview:
       "An end-to-end, AI-powered data analysis platform that automates the transition from raw CSV files to structured business intelligence. Built on Python and Streamlit, the platform utilizes a modular multi-agent architecture to orchestrate data cleaning, perform statistical exploratory analysis, auto-generate interactive visualizations, extract LLM-driven insights, and compile findings into a professional PDF report.",
+    githubUrl: "https://github.com/puvanakopis/data-analyst-multi-agents",
     liveUrl: "https://data-analyst-multi-agents.streamlit.app/",
   },
   {
     slug: "footstyle-ecommerce-platform",
     img: "/FootStyle.png",
-    projectPageImg: "/project-2.jpg",
     title: "FootStyle - Full Stack",
     tags: [
       "Next.js",
@@ -139,7 +116,6 @@ export const projects: Project[] = [
   {
     slug: "social-media-health-analysis",
     img: "/social-media-health-analysis.png",
-    projectPageImg: "/project-3.jpg",
     title: "Social Media Health Analysis - Data Analysis",
     tags: [
       "Python",
