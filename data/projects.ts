@@ -12,7 +12,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "istore",
-    img: "/istore.png",
+    img: "/iStore.png",
     title: "iStore – AI Agent & Full Stack",
     tags: ["Next.js", "FastAPI", "LangChain", "MongoDB", "Docker"],
     year: "2026",
@@ -76,9 +76,9 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/puvanakopis/CampusEase",
   },
   {
-    slug: "smart-data-analysis-pipeline",
-    img: "/smart-data-analysis-pipeline.png",
-    title: "Smart Data Analysis Agent - AI Agent",
+    slug: "InsightFlow_AI",
+    img: "/InsightFlow_AI.png",
+    title: "InsightFlow AI - AI Agent",
     tags: [
       "Python",
       "Streamlit",
@@ -112,6 +112,7 @@ export const projects: Project[] = [
     year: "2024",
     overview:
       "A premium footwear e-commerce platform featuring secure authentication, shopping cart functionality, payment processing, and a comprehensive admin dashboard.",
+    githubUrl: "https://github.com/puvanakopis/FootStyle",
   },
   {
     slug: "social-media-health-analysis",
@@ -128,6 +129,7 @@ export const projects: Project[] = [
     year: "2024",
     overview:
       "A data science research project exploring the relationship between social media usage patterns and their impact on mental and physical health indicators.",
+    githubUrl: "https://github.com/puvanakopis/social-media-health-analysis",
   },
 ];
 

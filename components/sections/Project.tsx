@@ -16,7 +16,7 @@ function Card({ p, index }: { p: Project; index: number }) {
       style={{ opacity: 0 }}
       data-project-card
     >
-      <div className="aspect-[16/10] overflow-hidden relative">
+      <div className="aspect-[2/1] overflow-hidden relative">
         <Image
           src={p.img}
           alt={p.title}
@@ -30,15 +30,15 @@ function Card({ p, index }: { p: Project; index: number }) {
           {p.year}
         </span>
       </div>
-      <div className="flex flex-col justify-between p-5 min-h-[180px]">
+      <div className="flex flex-col justify-between p-5 min-h-[250px]">
         <div>
           <h3 className="text-display text-xl text-[var(--foreground)] md:text-2xl font-medium">
             {p.title}
           </h3>
-          <p className="mt-2 text-xs text-[var(--muted-foreground)] leading-relaxed line-clamp-2">
+          <p className="mt-2 text-sm text-[var(--muted-foreground)] leading-relaxed line-clamp-4">
             {p.overview}
           </p>
-          <div className="mt-3.5 flex flex-wrap gap-1.5">
+          <div className="mt-3.5 flex flex-wrap gap-1.5 line-clamp-1">
             {p.tags.slice(0, 4).map((t) => (
               <span
                 key={t}
