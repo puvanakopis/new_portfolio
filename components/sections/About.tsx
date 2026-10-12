@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { Reveal } from "@/components/Reveal";
 import { Counter } from "@/components/Counter";
+import { CvModal } from "@/components/CvModal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,6 +19,16 @@ const stats = [
 export function About() {
   const root = useRef<HTMLElement>(null);
   const imgWrap = useRef<HTMLDivElement>(null);
+  const [isCvOpen, setIsCvOpen] = useState(false);
+
+  const handleCvClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // Only open popup modal on laptop / desktop screens (>= 1024px)
+    if (typeof window !== "undefined" && window.innerWidth >= 1024) {
+      e.preventDefault();
+      setIsCvOpen(true);
+    }
+    // On mobile / tablet (< 1024px), standard navigation opens the PDF directly
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -175,7 +186,8 @@ export function About() {
               href="/Puvanakopis_CV.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="group uppercase inline-flex w-fit items-center gap-3 rounded-full bg-[var(--primary)] px-7 py-3.5 text-sm font-medium text-[var(--primary-foreground)]"
+              onClick={handleCvClick}
+              className="group uppercase inline-flex w-fit items-center gap-3 rounded-full bg-[var(--primary)] px-7 py-3.5 text-sm font-medium text-[var(--primary-foreground)] cursor-pointer"
             >
               View CV
               <span className="transition-transform group-hover:translate-y-0.5">
@@ -202,6 +214,13 @@ export function About() {
           ))}
         </div>
       </div>
+
+      {/* Laptop CV Modal Preview */}
+      <CvModal
+        isOpen={isCvOpen}
+        onClose={() => setIsCvOpen(false)}
+        pdfUrl="/Puvanakopis_CV.pdf"
+      />
     </section>
   );
 }
