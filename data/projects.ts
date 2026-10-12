@@ -1,7 +1,13 @@
+export type ProjectCategory = "All" | "AI Agents & RAG" | "Full Stack" | "Data & ML";
+
 export type Project = {
   slug: string;
   img: string;
   title: string;
+  subtitle?: string;
+  category: "AI Agents & RAG" | "Full Stack" | "Data & ML";
+  accentColor?: string;
+  featured?: boolean;
   tags: string[];
   year: string;
   overview: string;
@@ -14,6 +20,10 @@ export const projects: Project[] = [
     slug: "istore",
     img: "/istore.png",
     title: "iStore – AI Agent & Full Stack",
+    subtitle: "Conversational E-Commerce & Agentic Shopping",
+    category: "AI Agents & RAG",
+    accentColor: "#c8ff00",
+    featured: true,
     tags: ["Next.js", "FastAPI", "LangChain", "MongoDB", "Docker"],
     year: "2026",
     overview:
@@ -24,6 +34,10 @@ export const projects: Project[] = [
     slug: "ceylon-trip-ai",
     img: "/CeylonTrip_AI.png",
     title: "CeylonTrip AI - AI Agent",
+    subtitle: "Collaborative Multi-Agent Itinerary Architect",
+    category: "AI Agents & RAG",
+    accentColor: "#10b981",
+    featured: true,
     tags: [
       "Python",
       "LangChain",
@@ -42,6 +56,9 @@ export const projects: Project[] = [
     slug: "cinebook",
     img: "/CineBook.png",
     title: "CineBook - Full Stack",
+    subtitle: "Cinema Booking Platform with AI Assistant",
+    category: "Full Stack",
+    accentColor: "#f59e0b",
     tags: [
       "Next.js",
       "TypeScript",
@@ -60,6 +77,10 @@ export const projects: Project[] = [
     slug: "campus-ease",
     img: "/CampusEase.png",
     title: "CampusEase - RAG & Full Stack",
+    subtitle: "University Marketplace with RAG Assistance",
+    category: "AI Agents & RAG",
+    accentColor: "#38bdf8",
+    featured: true,
     tags: [
       "React",
       "FastAPI",
@@ -79,6 +100,10 @@ export const projects: Project[] = [
     slug: "InsightFlow_AI",
     img: "/InsightFlow_AI.png",
     title: "InsightFlow AI - AI Agent",
+    subtitle: "Autonomous Multi-Agent Business Intelligence",
+    category: "Data & ML",
+    accentColor: "#a855f7",
+    featured: true,
     tags: [
       "Python",
       "Streamlit",
@@ -99,6 +124,9 @@ export const projects: Project[] = [
     slug: "footstyle-ecommerce-platform",
     img: "/FootStyle.png",
     title: "FootStyle - Full Stack",
+    subtitle: "High-Performance Footwear Commerce with Stripe",
+    category: "Full Stack",
+    accentColor: "#06b6d4",
     tags: [
       "Next.js",
       "TypeScript",
@@ -118,6 +146,9 @@ export const projects: Project[] = [
     slug: "social-media-health-analysis",
     img: "/social-media-health-analysis.png",
     title: "Social Media Health Analysis - Data Analysis",
+    subtitle: "Statistical Exploration on Digital Habit Impact",
+    category: "Data & ML",
+    accentColor: "#ec4899",
     tags: [
       "Python",
       "Pandas",

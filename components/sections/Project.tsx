@@ -1,165 +1,37 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useState, useMemo } from "react";
 import Image from "next/image";
+import { Github, ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
-import { projects, type Project } from "@/data/projects";
+import { projects, type ProjectCategory } from "@/data/projects";
 
-gsap.registerPlugin(ScrollTrigger);
-
-function Card({ p, index }: { p: Project; index: number }) {
-  return (
-    <div
-      className="group relative block w-full shrink-0 overflow-hidden rounded-2xl border border-[var(--border)] md:w-[33vw] bg-[var(--background)]/50 backdrop-blur-sm"
-      style={{ opacity: 0 }}
-      data-project-card
-    >
-      <div className="aspect-[2/1] overflow-hidden relative">
-        <Image
-          src={p.img}
-          alt={p.title}
-          width={800}
-          height={600}
-          loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-[var(--background)]/0 transition-colors duration-500 group-hover:bg-[var(--background)]/40" />
-        <span className="absolute right-4 top-4 text-[10px] font-semibold bg-[var(--background)]/80 backdrop-blur-md px-2.5 py-1 rounded-full text-[var(--muted-foreground)] border border-[var(--border)]">
-          {p.year}
-        </span>
-      </div>
-      <div className="flex flex-col justify-between p-5 min-h-[250px]">
-        <div>
-          <h3 className="text-display text-xl text-[var(--foreground)] md:text-2xl font-medium">
-            {p.title}
-          </h3>
-          <p className="mt-2 text-sm text-[var(--muted-foreground)] leading-relaxed line-clamp-4">
-            {p.overview}
-          </p>
-          <div className="mt-3.5 flex flex-wrap gap-1.5 line-clamp-1">
-            {p.tags.slice(0, 4).map((t) => (
-              <span
-                key={t}
-                className="rounded-full border border-[var(--border)] px-2.5 py-0.5 text-[10px] text-[var(--muted-foreground)]"
-              >
-                {t}
-              </span>
-            ))}
-            {p.tags.length > 4 && (
-              <span className="rounded-full border border-transparent px-1 py-0.5 text-[10px] text-[var(--muted-foreground)]">
-                +{p.tags.length - 4}
-              </span>
-            )}
-          </div>
-        </div>
-        {(p.githubUrl || p.liveUrl) && (
-          <div className="mt-4 flex gap-2">
-            {p.githubUrl && (
-              <a
-                href={p.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 rounded-full border border-[var(--border)] px-3 py-1.5 text-[10px] font-medium text-[var(--foreground)] transition-all duration-300 hover:border-[var(--primary)] hover:bg-[var(--primary)] hover:text-[var(--primary-foreground)]"
-                data-cursor-hover
-              >
-                <svg className="h-3 w-3 fill-current" viewBox="0 0 24 24">
-                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                </svg>
-                GitHub
-              </a>
-            )}
-            {p.liveUrl && (
-              <a
-                href={p.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 rounded-full border border-[var(--border)] px-3 py-1.5 text-[10px] font-medium text-[var(--foreground)] transition-all duration-300 hover:border-[var(--primary)] hover:bg-[var(--primary)] hover:text-[var(--primary-foreground)]"
-                data-cursor-hover
-              >
-                <svg className="h-3 w-3 fill-none stroke-current" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                  <polyline points="15 3 21 3 21 9" />
-                  <line x1="10" y1="14" x2="21" y2="3" />
-                </svg>
-                Live Demo
-              </a>
-            )}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
+const categories: { label: string; value: ProjectCategory }[] = [
+  { label: "All", value: "All" },
+  { label: "AI Agents & RAG", value: "AI Agents & RAG" },
+  { label: "Full Stack", value: "Full Stack" },
+  { label: "Data & ML", value: "Data & ML" },
+];
 
 export function Project() {
-  const section = useRef<HTMLElement>(null);
-  const track = useRef<HTMLDivElement>(null);
+  const [activeCategory, setActiveCategory] = useState<ProjectCategory>("All");
+  const [showAll, setShowAll] = useState(false);
 
-  useEffect(() => {
-    const mm = gsap.matchMedia();
+  const filteredProjects = useMemo(() => {
+    if (activeCategory === "All") return projects;
+    return projects.filter((p) => p.category === activeCategory);
+  }, [activeCategory]);
 
-    mm.add("(min-width: 768px)", () => {
-      const trackEl = track.current!;
-      const scrollDist = trackEl.scrollWidth - window.innerWidth;
-
-      gsap.utils.toArray<HTMLElement>("[data-project-card]").forEach((card, i) => {
-        gsap.fromTo(
-          card,
-          { opacity: 0, y: 60, scale: 0.95 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.9,
-            ease: "power3.out",
-            delay: i * 0.12,
-            scrollTrigger: { trigger: section.current, start: "top 80%" },
-          }
-        );
-      });
-
-      gsap.to(trackEl, {
-        x: -scrollDist,
-        ease: "none",
-        scrollTrigger: {
-          trigger: section.current,
-          start: "top top",
-          end: () => `+=${scrollDist}`,
-          pin: true,
-          scrub: 1,
-          invalidateOnRefresh: true,
-        },
-      });
-    });
-
-    mm.add("(max-width: 767px)", () => {
-      gsap.utils.toArray<HTMLElement>("[data-project-card]").forEach((card, i) => {
-        gsap.fromTo(
-          card,
-          { opacity: 0, y: 60 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.85,
-            ease: "power3.out",
-            scrollTrigger: { trigger: card, start: "top 85%" },
-          }
-        );
-      });
-    });
-
-    return () => mm.revert();
-  }, []);
+  const displayedProjects = useMemo(() => {
+    if (showAll) return filteredProjects;
+    return filteredProjects.slice(0, 4);
+  }, [filteredProjects, showAll]);
 
   return (
     <section
-      ref={section}
       id="project"
-      className="overflow-hidden px-6 pb-20 pt-10 md:pb-36 md:pt-16"
+      className="relative overflow-hidden px-6 pb-20 pt-12 md:pb-32 md:pt-20"
     >
-      {/* Container */}
       <div className="mx-auto max-w-7xl">
         {/* Section Label */}
         <Reveal
@@ -172,19 +44,158 @@ export function Project() {
 
         {/* Heading */}
         <Reveal direction="up">
-          <h2 className="text-display mb-16 max-w-4xl text-4xl text-[var(--foreground)] md:text-6xl">
+          <h2 className="text-display text-4xl text-[var(--foreground)] md:text-5xl md:whitespace-nowrap">
             What I’ve built and <span className="text-[var(--primary)]">shipped?</span>
           </h2>
         </Reveal>
-      </div>
 
-      <div
-        ref={track}
-        className="flex w-full flex-col gap-6 px-0 md:w-max md:flex-row md:items-center md:px-12 md:pt-10 pb-16 md:pb-24"
-      >
-        {projects.map((p, i) => (
-          <Card key={p.slug} p={p} index={i} />
-        ))}
+        {/* Minimalist Border-Only Filter in ONE line */}
+        <Reveal direction="up" delay={1}>
+          <div className="mt-8 flex items-center gap-2 sm:gap-3 overflow-x-auto whitespace-nowrap pb-2 scrollbar-none">
+            {categories.map((cat) => {
+              const count =
+                cat.value === "All"
+                  ? projects.length
+                  : projects.filter((p) => p.category === cat.value).length;
+              const isActive = activeCategory === cat.value;
+
+              return (
+                <button
+                  key={cat.value}
+                  type="button"
+                  onClick={() => {
+                    setActiveCategory(cat.value);
+                    setShowAll(false);
+                  }}
+                  className={`group shrink-0 flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-mono transition-all duration-300 ${
+                    isActive
+                      ? "border-[var(--primary)] text-[var(--primary)]"
+                      : "border-[var(--border)] text-[var(--muted-foreground)] hover:border-[var(--foreground)] hover:text-[var(--foreground)]"
+                  }`}
+                >
+                  <span>{cat.label}</span>
+                  <span className="opacity-60 text-[10px]">[{count}]</span>
+                </button>
+              );
+            })}
+          </div>
+        </Reveal>
+
+        {/* Border-Only Project List with Visible Images (No background color, No popups) */}
+        <div className="mt-14 border-t border-[var(--border)]">
+          {displayedProjects.map((p, index) => (
+            <div
+              key={p.slug}
+              className="group border-b border-[var(--border)] py-10 md:py-14 transition-colors duration-300 hover:border-[var(--primary)]/50"
+            >
+              <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12 items-center">
+                {/* Left Info Column */}
+                <div className="lg:col-span-7 flex flex-col justify-between">
+                  {/* Meta row */}
+                  <div className="flex items-center gap-3 font-mono text-xs text-[var(--muted-foreground)]">
+                    <span className="text-base font-bold text-[var(--primary)]">
+                      0{index + 1}
+                    </span>
+                    <span>•</span>
+                    <span className="rounded-full border border-[var(--border)] px-2.5 py-0.5 uppercase text-[11px]">
+                      {p.category}
+                    </span>
+                    <span>•</span>
+                    <span>{p.year}</span>
+                  </div>
+
+                  {/* Project Title */}
+                  <h3 className="text-display mt-3 text-2xl font-medium text-[var(--foreground)] transition-colors duration-300 group-hover:text-[var(--primary)] md:text-3xl lg:text-4xl">
+                    {p.title}
+                  </h3>
+
+                  {/* Subtitle / Overview */}
+                  <p className="mt-3 text-sm md:text-base leading-relaxed text-[var(--muted-foreground)] line-clamp-3">
+                    {p.overview}
+                  </p>
+
+                  {/* Tech stack tags with border only */}
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {p.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full border border-[var(--border)] px-3 py-1 text-xs text-[var(--muted-foreground)] transition-colors group-hover:border-white/20"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Action links */}
+                  <div className="mt-7 flex flex-wrap items-center gap-3">
+                    {p.liveUrl && (
+                      <a
+                        href={p.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group/btn inline-flex items-center gap-2 rounded-full border border-[var(--primary)] px-5 py-2.5 text-xs font-mono font-medium text-[var(--primary)] transition-all duration-300 hover:bg-[var(--primary)] hover:text-black"
+                        data-cursor-hover
+                      >
+                        <span>Live Demo</span>
+                        <ArrowUpRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                      </a>
+                    )}
+
+                    {p.githubUrl && (
+                      <a
+                        href={p.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] px-5 py-2.5 text-xs font-mono font-medium text-[var(--foreground)] transition-all duration-300 hover:border-[var(--primary)] hover:text-[var(--primary)]"
+                        data-cursor-hover
+                      >
+                        <Github className="h-4 w-4" />
+                        <span>Source Code</span>
+                        <ArrowUpRight className="h-3.5 w-3.5 opacity-60" />
+                      </a>
+                    )}
+                  </div>
+                </div>
+
+                {/* Right Image Column (Cleanly framed with border only, no background fill) */}
+                <div className="lg:col-span-5">
+                  <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-[var(--border)] transition-all duration-500 group-hover:border-[var(--primary)]/40">
+                    <Image
+                      src={p.img}
+                      alt={p.title}
+                      fill
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      sizes="(max-width: 1024px) 100vw, 40vw"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Show All / Show Less Toggle Button */}
+        {filteredProjects.length > 4 && (
+          <div className="mt-14 flex justify-center">
+            <button
+              type="button"
+              onClick={() => setShowAll((prev) => !prev)}
+              className="group inline-flex items-center gap-3 rounded-full border border-[var(--primary)] px-8 py-3.5 text-xs font-mono uppercase tracking-widest text-[var(--primary)] transition-all duration-300 hover:bg-[var(--primary)] hover:text-black"
+              data-cursor-hover
+            >
+              <span>
+                {showAll ? "Show Less" : `Show All (${filteredProjects.length})`}
+              </span>
+              <ArrowUpRight
+                className={`h-4 w-4 transition-transform duration-300 ${
+                  showAll
+                    ? "-rotate-45"
+                    : "group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                }`}
+              />
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

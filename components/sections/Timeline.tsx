@@ -124,8 +124,8 @@ export function Timeline() {
         </Reveal>
 
         <Reveal direction="up">
-          <h2 className="text-display mb-16 max-w-3xl text-4xl text-[var(--foreground)] md:text-6xl">
-            Where I’ve worked and <span className="text-[var(--primary)]">what I’ve built?</span>
+          <h2 className="text-display mb-16 text-4xl text-[var(--foreground)] md:text-5xl lg:whitespace-nowrap">
+            Where I’ve worked and <span className="text-[var(--primary)]">built?</span>
           </h2>
         </Reveal>
 

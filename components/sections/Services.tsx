@@ -90,7 +90,7 @@ export function Services() {
           Services
         </Reveal>
         <Reveal direction="up">
-          <h2 className="text-display mb-16 max-w-2xl text-4xl text-[var(--foreground)] md:text-6xl">
+          <h2 className="text-display mb-16 text-4xl text-[var(--foreground)] md:text-5xl md:whitespace-nowrap">
             What I can help you <span className="text-[var(--primary)]">build?</span>
           </h2>
         </Reveal>

@@ -75,13 +75,13 @@ export function Contact() {
     <section
       ref={root}
       id="contact"
-      className="overflow-hidden px-6 pb-14 pt-10 md:pb-28 md:pt-16"
+      className="relative flex flex-col justify-center overflow-hidden px-6 py-14 lg:min-h-screen lg:py-16"
     >
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto my-auto flex w-full max-w-7xl flex-col justify-center">
         {/* Section Label */}
         <Reveal
           as="span"
-          className="mb-6 block text-sm uppercase tracking-[0.3em] text-[var(--primary)]"
+          className="mb-5 block text-sm uppercase tracking-[0.3em] text-[var(--primary)]"
           direction="left"
         >
           Contact
@@ -89,8 +89,8 @@ export function Contact() {
 
         {/* Heading */}
         <Reveal direction="up">
-          <h2 className="contact-heading text-display mb-16 max-w-4xl text-4xl text-[var(--foreground)] md:text-6xl">
-            Let’s connect and build <span className="text-[var(--primary)]">intelligent solutions</span>
+          <h2 className="contact-heading text-display mb-10 md:mb-12 text-4xl text-[var(--foreground)] md:text-5xl lg:whitespace-nowrap">
+            Let’s connect and <span className="text-[var(--primary)]">build together?</span>
           </h2>
         </Reveal>
 
@@ -99,28 +99,28 @@ export function Contact() {
         <div className="absolute left-1/4 top-1/3 -z-10 h-64 w-64 rounded-full bg-[var(--primary)]/5 blur-[100px] pointer-events-none animate-blob" />
 
         {/* Content */}
-        <div className="grid gap-14 md:grid-cols-[1.2fr_0.8fr] md:gap-20">
+        <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr] md:gap-16">
           {/* Divider */}
           <div className="col-span-full contact-divider h-px w-full bg-[var(--border)]" />
 
           {/* Left Side */}
-          <div className="contact-left pt-6">
-            <span className="mb-5 block text-sm uppercase tracking-[0.2em] text-[var(--muted-foreground)]">
+          <div className="contact-left pt-2 md:pt-4">
+            <span className="mb-3 block text-sm uppercase tracking-[0.2em] text-[var(--muted-foreground)]">
               Get in touch
             </span>
 
-            <p className="mt-8 max-w-xl leading-relaxed text-[var(--muted-foreground)]">
+            <p className="mt-4 md:mt-6 max-w-xl leading-relaxed text-[var(--muted-foreground)] text-sm md:text-base">
               Exploring opportunities to collaborate, learn, and build impactful
               AI-driven solutions. Currently open to internships and exciting
               project opportunities in AI Engineering and software development.
             </p>
 
             {/* Hero Style CTA */}
-            <div className="contact-cta mt-10 inline-block">
+            <div className="contact-cta mt-6 md:mt-8 inline-block">
               <a
                 href="mailto:puvanakopis@gmail.com"
                 data-cursor-hover
-                className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-[var(--primary)] px-8 py-4 text-sm font-medium uppercase tracking-wider text-[var(--primary-foreground)]"
+                className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-[var(--primary)] px-8 py-3.5 text-sm font-medium uppercase tracking-wider text-[var(--primary-foreground)]"
               >
                 <span className="absolute inset-0 -z-0 origin-left scale-x-0 bg-[var(--foreground)] transition-transform duration-500 ease-out group-hover:scale-x-100" />
 
@@ -136,17 +136,17 @@ export function Contact() {
           </div>
 
           {/* Right Side */}
-          <div className="pt-6">
-            <span className="mb-5 block text-sm uppercase tracking-[0.2em] text-[var(--muted-foreground)]">
+          <div className="pt-2 md:pt-4">
+            <span className="mb-3 block text-sm uppercase tracking-[0.2em] text-[var(--muted-foreground)]">
               Connect
             </span>
 
-            <div className="space-y-4">
+            <div className="space-y-1 md:space-y-2">
               <a
                 href="https://github.com/puvanakopis"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="contact-link group flex items-center justify-between border-b border-[var(--border)] py-5 text-lg text-[var(--foreground)] transition-colors hover:text-[var(--primary)]"
+                className="contact-link group flex items-center justify-between border-b border-[var(--border)] py-3.5 md:py-4 text-base md:text-lg text-[var(--foreground)] transition-colors hover:text-[var(--primary)]"
               >
                 <div className="flex items-center gap-4">
                   <svg className="h-5 w-5 fill-current text-[var(--muted-foreground)] group-hover:text-[var(--primary)] transition-colors" viewBox="0 0 24 24">
@@ -168,7 +168,7 @@ export function Contact() {
                 href="https://www.linkedin.com/in/puvanakopis/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="contact-link group flex items-center justify-between border-b border-[var(--border)] py-5 text-lg text-[var(--foreground)] transition-colors hover:text-[var(--primary)]"
+                className="contact-link group flex items-center justify-between border-b border-[var(--border)] py-3.5 md:py-4 text-base md:text-lg text-[var(--foreground)] transition-colors hover:text-[var(--primary)]"
               >
                 <div className="flex items-center gap-4">
                   <svg className="h-5 w-5 fill-current text-[var(--muted-foreground)] group-hover:text-[var(--primary)] transition-colors" viewBox="0 0 24 24">
@@ -190,7 +190,7 @@ export function Contact() {
                 href="https://x.com/puvanakopis"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="contact-link group flex items-center justify-between border-b border-[var(--border)] py-5 text-lg text-[var(--foreground)] transition-colors hover:text-[var(--primary)]"
+                className="contact-link group flex items-center justify-between border-b border-[var(--border)] py-3.5 md:py-4 text-base md:text-lg text-[var(--foreground)] transition-colors hover:text-[var(--primary)]"
               >
                 <div className="flex items-center gap-4">
                   <svg className="h-4 w-4 fill-current text-[var(--muted-foreground)] group-hover:text-[var(--primary)] transition-colors mx-[2px]" viewBox="0 0 24 24">
@@ -210,7 +210,7 @@ export function Contact() {
 
               <a
                 href="mailto:puvanakopis@gmail.com"
-                className="contact-link group flex items-center justify-between border-b border-[var(--border)] py-5 text-lg text-[var(--foreground)] transition-colors hover:text-[var(--primary)]"
+                className="contact-link group flex items-center justify-between border-b border-[var(--border)] py-3.5 md:py-4 text-base md:text-lg text-[var(--foreground)] transition-colors hover:text-[var(--primary)]"
               >
                 <div className="flex items-center gap-4">
                   <svg className="h-5 w-5 fill-none stroke-current text-[var(--muted-foreground)] group-hover:text-[var(--primary)] transition-colors" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
