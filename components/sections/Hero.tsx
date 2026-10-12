@@ -302,23 +302,13 @@ export function Hero() {
           <div className="hero-image relative mx-auto hidden w-full max-w-sm lg:block lg:max-w-none">
             <div className="overflow-hidden">
               <Image
-                src="/puvan1.png"
+                src="/puvan_hero.png"
                 alt="Portrait of Puvanakopis"
                 width={800}
                 height={1000}
                 className="hero-image-inner aspect-[4/5] w-full object-cover"
                 priority
               />
-            </div>
-
-            <div className="hero-fade absolute bottom-5 right-5 rounded-2xl border border-[var(--border)] bg-[var(--background)]/80 px-6 py-4 backdrop-blur-xl shadow-lg">
-              <div className="text-display text-2xl text-[var(--primary)]">
-                Open
-              </div>
-
-              <p className="text-xs uppercase tracking-wider text-[var(--muted-foreground)]">
-                for projects & internships
-              </p>
             </div>
           </div>
         </div>
