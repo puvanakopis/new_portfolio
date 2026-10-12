@@ -10,10 +10,11 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        display: ["var(--font-display)", "sans-serif"],
-        sans: ["var(--font-sans)", "sans-serif"],
-        body: ["var(--font-sans)", "sans-serif"],
-        mono: ["'JetBrains Mono'", "monospace"],
+        display: ["var(--font-display)", "'Satoshi'", "sans-serif"],
+        sans: ["var(--font-sans)", "'Satoshi'", "sans-serif"],
+        satoshi: ["'Satoshi'", "sans-serif"],
+        body: ["var(--font-sans)", "'Satoshi'", "sans-serif"],
+        mono: ["var(--font-mono)", "'JetBrains Mono'", "monospace"],
       },
       colors: {
         ink: {

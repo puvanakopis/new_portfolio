@@ -1,3 +1,6 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700,800,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -26,9 +29,10 @@
   --ring: #c8ff00;
   --surface: #1e1e1e;
 
-  /* Font variables (overridden by next/font/google in layout.tsx) */
-  --font-display: "Space Grotesk", sans-serif;
-  --font-sans: "Inter", sans-serif;
+  /* Font variables */
+  --font-display: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
 }
 
 /* ─── Base layer ─── */
@@ -47,6 +51,7 @@
     color: var(--foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
   }
 
@@ -60,9 +65,9 @@
 @layer utilities {
   .text-display {
     font-family: var(--font-display);
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    line-height: 0.95;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
   }
 
   /* word reveal mask for hero */
