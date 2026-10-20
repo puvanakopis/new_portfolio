@@ -28,6 +28,7 @@ export const projects: Project[] = [
     year: "2026",
     overview:
       "iStore is a full-stack e-commerce application integrated with an AI agent that enables conversational shopping. Users can interact with the system using natural language to browse products, manage wishlists, and complete purchases. The backend is powered by FastAPI, with a LangChain-based agent orchestrating intelligent user interactions, and the system is containerized using Docker for deployment.",
+    liveUrl: "https://istore-xi.vercel.app/",
     githubUrl: "https://github.com/puvanakopis/iStore",
   },
   {
@@ -51,6 +52,30 @@ export const projects: Project[] = [
       "An intelligent travel planning platform that generates personalized Sri Lanka itineraries using a collaborative multi-agent AI architecture. The system helps travelers create optimized trips based on preferences, destinations, budgets, and travel duration.",
     githubUrl: "https://github.com/puvanakopis/CeylonTrip-AI",
     liveUrl: "https://ceylontrip-ai.streamlit.app",
+  },
+  {
+    slug: "minimal-ecommerce-platform",
+    img: "/Minimal.png",
+    title: "MINIMAL - Full Stack",
+    subtitle: "Modern Luxury Fashion Commerce with Spring Boot & Stripe",
+    category: "Full Stack",
+    accentColor: "#17b0cf",
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "Java",
+      "Spring Boot",
+      "MySQL",
+      "Spring Security",
+      "JWT",
+      "Stripe",
+      "Tailwind CSS",
+    ],
+    year: "2024",
+    overview:
+      "A minimalist luxury fashion e-commerce platform featuring role-based JWT authentication, interactive product catalog, wishlist and cart management, Stripe checkout, and a full-featured administrative portal.",
+    githubUrl: "https://github.com/puvanakopis/minimal",
+    liveUrl: "https://minimal-murex.vercel.app/",
   },
   {
     slug: "cinebook",
@@ -95,30 +120,6 @@ export const projects: Project[] = [
     overview:
       "CampusEase is a university-focused accommodation and vehicle rental marketplace designed for Sabaragamuwa University of Sri Lanka (SUSL) students and staff. It connects users with local property and vehicle owners, featuring a secure multi-role portal (Student, Staff, Owner, Admin), interactive map search via React Leaflet, a booking/reservation engine, and an AI-powered RAG assistant for natural language inquiry.",
     githubUrl: "https://github.com/puvanakopis/CampusEase",
-  },
-  {
-    slug: "InsightFlow_AI",
-    img: "/InsightFlow_AI.png",
-    title: "InsightFlow AI - AI Agent",
-    subtitle: "Autonomous Multi-Agent Business Intelligence",
-    category: "Data & ML",
-    accentColor: "#a855f7",
-    featured: true,
-    tags: [
-      "Python",
-      "Streamlit",
-      "Pandas",
-      "Plotly",
-      "LangChain",
-      "Groq API",
-      "FPDF",
-      "Multi-Agent Systems",
-    ],
-    year: "2025",
-    overview:
-      "An end-to-end, AI-powered data analysis platform that automates the transition from raw CSV files to structured business intelligence. Built on Python and Streamlit, the platform utilizes a modular multi-agent architecture to orchestrate data cleaning, perform statistical exploratory analysis, auto-generate interactive visualizations, extract LLM-driven insights, and compile findings into a professional PDF report.",
-    githubUrl: "https://github.com/puvanakopis/data-analyst-multi-agents",
-    liveUrl: "https://data-analyst-multi-agents.streamlit.app/",
   },
   {
     slug: "footstyle-ecommerce-platform",
