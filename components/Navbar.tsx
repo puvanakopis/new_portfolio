@@ -11,6 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 const links = [
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
+  { label: "Skills", href: "#skills" },
   { label: "Project", href: "#project" },
   { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },
@@ -74,7 +75,7 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
-    const sectionIds = ["about", "services", "project", "experience", "contact"];
+    const sectionIds = ["about", "services", "skills", "project", "experience", "contact"];
 
     const onScroll = () => {
       const scrollY = window.scrollY;

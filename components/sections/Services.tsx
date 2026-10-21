@@ -15,11 +15,6 @@ const services = [
   },
   {
     num: "02",
-    title: "Data Analytics",
-    desc: "Extracting insights from data using statistical analysis, feature engineering, and visualization. Experienced in EDA, anomaly detection, and building interactive dashboards with Python-based analytics tools.",
-  },
-  {
-    num: "03",
     title: "Full-Stack Development",
     desc: "Developing AI-powered web applications using Next.js and FastAPI with secure APIs, authentication systems, and database integration. Focused on scalable, production-ready architectures with modern deployment practices.",
   },
