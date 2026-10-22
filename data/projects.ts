@@ -17,7 +17,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "istore",
-    img: "/Istore.png",
+    img: "/iStore1.png",
     title: "iStore – AI Agent & Full Stack",
     subtitle: "Conversational E-Commerce & Agentic Shopping",
     category: "AI & ML",
