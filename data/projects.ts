@@ -1,12 +1,11 @@
-export type ProjectCategory = "All" | "AI Agents & RAG" | "Full Stack" | "Data & ML";
+export type ProjectCategory = "All" | "Full Stack" | "AI & ML";
 
 export type Project = {
   slug: string;
   img: string;
   title: string;
   subtitle?: string;
-  category: "AI Agents & RAG" | "Full Stack" | "Data & ML";
-  accentColor?: string;
+  category: "Full Stack" | "AI & ML";
   featured?: boolean;
   tags: string[];
   year: string;
@@ -18,11 +17,10 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "istore",
-    img: "/istore.png",
+    img: "/Istore.png",
     title: "iStore – AI Agent & Full Stack",
     subtitle: "Conversational E-Commerce & Agentic Shopping",
-    category: "AI Agents & RAG",
-    accentColor: "#c8ff00",
+    category: "AI & ML",
     featured: true,
     tags: ["Next.js", "FastAPI", "LangChain", "MongoDB", "Docker"],
     year: "2026",
@@ -36,15 +34,13 @@ export const projects: Project[] = [
     img: "/CeylonTrip_AI.png",
     title: "CeylonTrip AI - AI Agent",
     subtitle: "Collaborative Multi-Agent Itinerary Architect",
-    category: "AI Agents & RAG",
-    accentColor: "#10b981",
+    category: "AI & ML",
     featured: true,
     tags: [
       "Python",
       "LangChain",
       "Groq API",
       "ChatGroq",
-      "Pydantic",
       "Multi-Agent Systems",
     ],
     year: "2025",
@@ -54,12 +50,23 @@ export const projects: Project[] = [
     liveUrl: "https://ceylontrip-ai.streamlit.app",
   },
   {
+    slug: "house-price-prediction",
+    img: "/house-price-prediction.png",
+    title: "House Price Prediction – ML Algorithm Comparison",
+    subtitle: "Regression Benchmarking & Real-Time Valuation UI",
+    category: "AI & ML",
+    featured: true,
+    tags: ["Python", "Scikit-Learn", "Streamlit", "Pandas", "Random Forest", "Gradient Boosting"],
+    year: "2026",
+    overview: "An end-to-end regression system comparing multiple ML algorithms—including Linear Regression, Ridge, Lasso, Random Forest, and Gradient Boosting—to identify optimal predictive performance on King County housing data, backed by automated feature engineering and an interactive Streamlit valuation app.",
+    githubUrl: "https://github.com/puvanakopis/House-Price-Prediction",
+  },
+  {
     slug: "minimal-ecommerce-platform",
     img: "/Minimal.png",
-    title: "MINIMAL - Full Stack",
+    title: "Minimal - Full Stack",
     subtitle: "Modern Luxury Fashion Commerce with Spring Boot & Stripe",
     category: "Full Stack",
-    accentColor: "#17b0cf",
     tags: [
       "Next.js",
       "TypeScript",
@@ -78,12 +85,34 @@ export const projects: Project[] = [
     liveUrl: "https://minimal-murex.vercel.app/",
   },
   {
+    slug: "urbanbite-food-delivery-platform",
+    img: "/UrbanBite.png",
+    title: "UrbanBite - Full Stack",
+    subtitle: "Multi-Portal Food Delivery & Restaurant Ecosystem with Spring Boot & Angular",
+    category: "Full Stack",
+    tags: [
+      "Angular",
+      "TypeScript",
+      "Java",
+      "Spring Boot",
+      "PostgreSQL",
+      "Spring Security",
+      "JWT",
+      "Tailwind CSS",
+      "RxJS",
+      "REST API",
+    ],
+    year: "2025",
+    overview:
+      "A comprehensive multi-role food ordering and restaurant management platform featuring dedicated portals for customers, restaurant partners, delivery hubs, and system administrators, complete with role-based JWT authentication, interactive menu catalog, live order workflows, and automated email services.",
+    githubUrl: "https://github.com/puvanakopis/UrbanBite",
+  },
+  {
     slug: "cinebook",
     img: "/CineBook.png",
     title: "CineBook - Full Stack",
     subtitle: "Cinema Booking Platform with AI Assistant",
     category: "Full Stack",
-    accentColor: "#f59e0b",
     tags: [
       "Next.js",
       "TypeScript",
@@ -103,8 +132,7 @@ export const projects: Project[] = [
     img: "/CampusEase.png",
     title: "CampusEase - RAG & Full Stack",
     subtitle: "University Marketplace with RAG Assistance",
-    category: "AI Agents & RAG",
-    accentColor: "#38bdf8",
+    category: "AI & ML",
     featured: true,
     tags: [
       "React",
@@ -127,7 +155,6 @@ export const projects: Project[] = [
     title: "FootStyle - Full Stack",
     subtitle: "High-Performance Footwear Commerce with Stripe",
     category: "Full Stack",
-    accentColor: "#06b6d4",
     tags: [
       "Next.js",
       "TypeScript",
@@ -142,27 +169,7 @@ export const projects: Project[] = [
     overview:
       "A premium footwear e-commerce platform featuring secure authentication, shopping cart functionality, payment processing, and a comprehensive admin dashboard.",
     githubUrl: "https://github.com/puvanakopis/FootStyle",
-  },
-  {
-    slug: "social-media-health-analysis",
-    img: "/social-media-health-analysis.png",
-    title: "Social Media Health Analysis - Data Analysis",
-    subtitle: "Statistical Exploration on Digital Habit Impact",
-    category: "Data & ML",
-    accentColor: "#ec4899",
-    tags: [
-      "Python",
-      "Pandas",
-      "NumPy",
-      "Matplotlib",
-      "Seaborn",
-      "EDA",
-    ],
-    year: "2024",
-    overview:
-      "A data science research project exploring the relationship between social media usage patterns and their impact on mental and physical health indicators.",
-    githubUrl: "https://github.com/puvanakopis/social-media-health-analysis",
-  },
+  }
 ];
 
 export function getProject(slug: string): Project | undefined {

@@ -8,9 +8,8 @@ import { projects, type ProjectCategory } from "@/data/projects";
 
 const categories: { label: string; value: ProjectCategory }[] = [
   { label: "All", value: "All" },
-  { label: "AI Agents & RAG", value: "AI Agents & RAG" },
   { label: "Full Stack", value: "Full Stack" },
-  { label: "Data & ML", value: "Data & ML" },
+  { label: "AI & ML", value: "AI & ML" },
 ];
 
 export function Project() {
